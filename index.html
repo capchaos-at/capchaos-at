@@ -32,23 +32,47 @@
 	<meta name="robots" content="index,follow"/>
 	<link rel="canonical" href="https://capchaos.com/">
 
-	<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+
+
+	<link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.pngcon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.pngcon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.pngcon-16x16.png">
+
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+	<meta name="theme-color" content="#81c784">
 	<link rel="icon" type="image/x-icon" href="favicon.ico">
-	<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
-	<link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#81c784">
+
 	<link rel="manifest" href="manifest.webmanifest">
 
-	<link rel="preload" as="font" type="font/woff2" href="assets/fonts/IBM-Plex-Sans-normal-6-500.woff2" crossorigin>
-	<link rel="preload" as="font" type="font/woff2" href="assets/fonts/Sandoval-Regular.woff2" crossorigin>
+	<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/IBM-Plex-Sans-normal-6-500.woff2" crossorigin>
+	<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/Sandoval-Regular.woff2" crossorigin>
 	<link rel="stylesheet" href="styles.css">
+
+	<script>
+		if (navigator.serviceWorker) {
+			navigator.serviceWorker.register (
+					'/sw.js',
+					{scope: '/'}
+			)
+		}
+	</script>
 
 	<!-- Without JS there is no hash router, so simply stack every article. -->
 	<noscript>
 		<style>
 			.article { display: block; }
-			.article + .article { border-top: 1px solid var(--border); margin-top: 32px; }
-			.sidenav { position: static; height: auto; }
+			.article + .article { border-top: 1px solid var(--line); }
 		</style>
 	</noscript>
 
@@ -63,16 +87,16 @@
 				"description"              : "Implementing your strategy by converting high-level objectives into low-level tactical decision making, using cutting edge technology and years of hands-on experience in management methodology.",
 				"address"                  : {
 					"@type"          : "PostalAddress",
-					"streetAddress"  : "Forstnergasse 3",
-					"addressLocality": "Bad Vöslau",
+					"streetAddress"  : "Hauptstraße 40, Top 2",
+					"addressLocality": "Sooß",
 					"addressRegion"  : "AT",
-					"postalCode"     : "2540",
+					"postalCode"     : "2504",
 					"addressCountry" : "Austria"
 				},
 				"geo"                      : {
 					"@type"    : "GeoCoordinates",
-					"latitude" : 47.962760586725715,
-					"longitude": 16.19327190822609
+					"latitude" : 47.9849867,
+					"longitude": 16.216215
 				},
 				"url"                      : "https://capchaos.com",
 				"openingHoursSpecification": [
@@ -137,824 +161,546 @@
 <a class="skip-link" href="#main-content">Skip to content</a>
 
 <!-- ====================================================================
-     Toolbar
+     Header
      ==================================================================== -->
-<header class="toolbar">
-	<button id="nav-toggle" class="icon-btn" type="button" aria-label="Toggle navigation" aria-expanded="false"
-	        aria-controls="sidenav">
-		<span class="material-icons" aria-hidden="true">menu</span>
-	</button>
+<header class="site-header" id="site-header">
+	<div class="container header-inner">
+		<a class="brand" href="#home">CapChaos</a>
 
-	<a class="toolbar-brand" href="#home">CapChaos</a>
+		<span class="header-spacer"></span>
 
-	<span class="toolbar-spacer"></span>
+		<nav class="primary-nav" aria-label="Main navigation">
+				<a href="#home" data-nav-link>Home</a>
+				<a href="#business-intelligence" data-nav-link>Business Intelligence</a>
+				<a href="#software-strategy" data-nav-link>Software Strategy</a>
+				<a href="#tactical-management" data-nav-link>Tactical Management</a>
+		</nav>
 
-	<a class="icon-btn" href="https://www.linkedin.com/in/franzgerhart/" target="_blank" rel="noopener noreferrer"
-	   aria-label="LinkedIn profile of Franz Gerhart">
-		<span class="linkedin-icon" aria-hidden="true"></span>
-	</a>
+		<div class="header-actions">
+			<a class="icon-btn" href="https://www.linkedin.com/in/franzgerhart/" target="_blank"
+			   rel="noopener noreferrer" aria-label="LinkedIn profile of Franz Gerhart">
+				<span class="linkedin-icon" aria-hidden="true"></span>
+			</a>
+			<a class="btn btn-primary btn-sm" href="#contact">Contact</a>
+			<button class="icon-btn nav-toggle" id="nav-toggle" type="button" aria-label="Open menu"
+			        aria-expanded="false" aria-controls="mobile-nav">
+				<span class="material-icons" aria-hidden="true">menu</span>
+			</button>
+		</div>
+	</div>
 </header>
 
-<div class="backdrop" id="backdrop" aria-hidden="true"></div>
+<div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
 
-<div class="shell">
+<nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+	<ul>
+				<li><a href="#home" data-nav-link><span class="material-icons" aria-hidden="true">business</span>Home</a></li>
+				<li><a href="#business-intelligence" data-nav-link><span class="material-icons" aria-hidden="true">fingerprint</span>Business Intelligence</a></li>
+				<li><a href="#software-strategy" data-nav-link><span class="material-icons" aria-hidden="true">phonelink</span>Software Strategy</a></li>
+				<li><a href="#tactical-management" data-nav-link><span class="material-icons" aria-hidden="true">manage_accounts</span>Tactical Management</a></li>
+	</ul>
+	<p class="mobile-nav-label">Legal</p>
+	<ul>
+				<li><a href="#contact" data-nav-link><span class="material-icons" aria-hidden="true">alternate_email</span>Contact</a></li>
+				<li><a href="#terms" data-nav-link><span class="material-icons" aria-hidden="true">policy</span>Terms</a></li>
+				<li><a href="#notice" data-nav-link><span class="material-icons" aria-hidden="true">gavel</span>Legal Notice</a></li>
+	</ul>
+</nav>
 
-	<!-- ================================================================
-	     Sidebar navigation
-	     ================================================================ -->
-	<nav class="sidenav" id="sidenav" aria-label="Main navigation">
-		<ul class="nav-list">
-			<li>
-				<a class="nav-link" href="#home" data-nav-link>
-					<span class="material-icons" aria-hidden="true">business</span>
-					<span>Home</span>
-				</a>
-			</li>
-		</ul>
+<main id="main-content">
 
-		<hr>
-		<div class="nav-subheader">Services</div>
+			<!-- ==================== Home ==================== -->
+			<article class="article" id="home" aria-labelledby="home-title">
 
-		<ul class="nav-list">
-			<li>
-				<a class="nav-link" href="#business-intelligence" data-nav-link>
-					<span class="material-icons" aria-hidden="true">fingerprint</span>
-					<span>Business Intelligence</span>
-				</a>
-			</li>
-			<li>
-				<a class="nav-link" href="#software-strategy" data-nav-link>
-					<span class="material-icons" aria-hidden="true">phonelink</span>
-					<span>Software Strategy</span>
-				</a>
-			</li>
-			<li>
-				<a class="nav-link" href="#tactical-management" data-nav-link>
-					<span class="material-icons" aria-hidden="true">manage_accounts</span>
-					<span>Tactical Management</span>
-				</a>
-			</li>
-		</ul>
-
-		<span class="nav-spacer"></span>
-
-		<hr>
-		<div class="nav-subheader">Legal</div>
-
-		<ul class="nav-list">
-			<li>
-				<a class="nav-link" href="#contact" data-nav-link>
-					<span class="material-icons" aria-hidden="true">alternate_email</span>
-					<span>Contact</span>
-				</a>
-			</li>
-			<li>
-				<a class="nav-link" href="#terms" data-nav-link>
-					<span class="material-icons" aria-hidden="true">policy</span>
-					<span>Terms</span>
-				</a>
-			</li>
-			<li>
-				<a class="nav-link" href="#notice" data-nav-link>
-					<span class="material-icons" aria-hidden="true">gavel</span>
-					<span>Notice</span>
-				</a>
-			</li>
-		</ul>
-	</nav>
-
-	<div class="content">
-		<main class="page-host" id="main-content">
-
-			<!-- ========================================================
-			     Home
-			     ======================================================== -->
-			<article class="article" id="home" aria-label="Home">
-				<div class="article-inner">
-
-					<div class="hero hero-home">
-						<h1 class="hero-title">CapChaos e.U.</h1>
-						<button class="btn btn-accent" type="button" id="explore-button">Explore</button>
-					</div>
-
-					<div class="accordion" id="home-accordion">
-						<details class="accordion-panel" id="panel-what">
-							<summary>
-								<span class="material-icons" aria-hidden="true">sentiment_satisfied_alt</span>
-								<span class="summary-title">What is CapChaos doing?</span>
-								<span class="material-icons summary-chevron" aria-hidden="true">expand_more</span>
-							</summary>
-							<div class="accordion-body">
-								<div class="row-layout">
-									<div class="col-50">
-										<p class="align-justify">This is
-											<a href="https://www.linkedin.com/in/franzgerhart/" target="_blank"
-											   rel="noopener noreferrer">me</a>
-											and my network of professionals providing services to organizations in need
-											of help with</p>
-										<ul>
-											<li><a href="#business-intelligence">business intelligence</a>,</li>
-											<li><a href="#software-strategy">software strategy</a> and</li>
-											<li><a href="#tactical-management">tactical management</a>.</li>
-										</ul>
-
-										<p class="align-justify">I am fluent in bridging the gap between low-level
-											tactical decision making and high-level strategic planning, ensuring that
-											one doesn’t obliterate the other. As an iGaming veteran and enthusiast in
-											enterprise-grade software development I very much enjoy challenging markets
-											and industries.</p>
-										<p class="align-justify">IT in particular is predicated upon ever-changing
-											technology stacks that provide opportunity in every obstacle. I am
-											passionate about finding such opportunities by crafting applications,
-											designing architecture, and developing business logic.</p>
-
-										<div class="btn-row">
-											<a class="btn btn-primary" href="#contact">Contact</a>
-										</div>
-									</div>
-									<div class="col-50 img-container">
-										<img class="img accordion-images" src="assets/images/kanban.webp"
-										     alt="Kanban Image" height="400" width="400" loading="lazy">
-									</div>
-								</div>
-							</div>
-						</details>
-
-						<details class="accordion-panel">
-							<summary>
-								<span class="material-icons" aria-hidden="true">task_alt</span>
-								<span class="summary-title">How am I useful for you?</span>
-								<span class="material-icons summary-chevron" aria-hidden="true">expand_more</span>
-							</summary>
-							<div class="accordion-body">
-								<div class="row-layout">
-									<div class="col-50 img-container">
-										<img class="img accordion-images" src="assets/images/how-to-help.webp"
-										     alt="BI image" height="400" width="400" loading="lazy">
-									</div>
-									<div class="col-50">
-										<p class="align-justify">Looking at projects, there are four things that can and
-											often will cause issues and subsequent delays.</p>
-										<ul>
-											<li>Change requests</li>
-											<li>Communication</li>
-											<li>Conflict</li>
-											<li>Lack of knowledge in project management methodology</li>
-										</ul>
-
-										<p class="align-justify">You may rightly say there are more, however this to me
-											is and always was the highest observable order problems may be deduced from.
-											Change requests are inevitable and constant. One can do well in
-											orchestrating teams around them, but they will keep coming.</p>
-										<p class="align-justify">Good managers can do an outstanding job and become
-											effective in handling conflict and communication. Excellent managers also
-											use applied knowledge in management methodology which makes them
-											efficient.</p>
-										<p class="align-justify">I took me years to develop the skill and apply that
-											knowledge, find the right tools &amp; processes for the project, and
-											understand how to scale them.</p>
-										<p class="align-justify">Being effective gets the job done. Being efficient will
-											get the job done repeatedly at high-quality and without fatigue. I will
-											gladly assist your organisation in becoming more efficient.</p>
-
-										<div class="btn-row">
-											<a class="btn btn-primary" href="#contact">Contact</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</details>
-
-						<details class="accordion-panel">
-							<summary>
-								<span class="material-icons" aria-hidden="true">block</span>
-								<span class="summary-title">What is it that I am not doing!</span>
-								<span class="material-icons summary-chevron" aria-hidden="true">expand_more</span>
-							</summary>
-							<div class="accordion-body">
-								<div class="row-layout">
-									<div class="col-50">
-										<p class="align-justify">There are things I am sure capable of doing but you are
-											definitely better off letting others take care of them. The IT industry
-											isn’t far off the medical sector in this regard. You’d probably never asked
-											a cardiologist to fix your teeth. Conversely, your database replication
-											won't be fixed by a fronted engineer.</p>
-										<p class="align-justify">This is not an exhaustive list, but you will recognize
-											the pattern.</p>
-										<ul>
-											<li>Setting up your company website (WordPress etc.)</li>
-											<li>Web design</li>
-											<li>Graphics design</li>
-											<li>Content / copy</li>
-											<li>First- and second level employee IT support</li>
-											<li>E-Mail server administration</li>
-											<li>Backup and security solutions</li>
-											<li>Legal matters</li>
-										</ul>
-
-										<p class="align-justify">If you need that kind of help though, do contact me as
-											well, I know the right people and will be happy to introduce them.</p>
-
-										<div class="btn-row">
-											<a class="btn btn-primary" href="#contact">Contact</a>
-										</div>
-									</div>
-									<div class="col-50 img-container">
-										<img class="img accordion-images" src="assets/images/no-service.webp"
-										     alt="no service image" height="400" width="400" loading="lazy">
-									</div>
-								</div>
-							</div>
-						</details>
-					</div>
-
-					<div class="column-layout">
-						<div>
-							<h2 class="center-text">Value propositions</h2>
-							<p class="center-text">The three core areas CapChaos will be valuable for your
-								organization.</p>
+				<section class="hero hero-home">
+					<div class="container hero-content">
+						<p class="eyebrow">Tactical Management</p>
+						<h1 class="hero-title" id="home-title">CapChaos e.U.</h1>
+						<p class="hero-lead">Implementing your strategy by converting high-level objectives into low-level tactical decision making, using cutting edge technology and years of hands-on experience in management methodology.</p>
+						<div class="btn-row">
+							<button class="btn btn-accent" type="button" data-scroll-to="#home-services">Explore services</button>
+							<a class="btn btn-on-dark" href="#contact">Get in touch</a>
 						</div>
 					</div>
+				</section>
 
-					<div class="row-layout">
-						<div class="col-33">
-							<div class="card">
-								<div class="card-header">
-									<div class="card-avatar avatar-bi" aria-hidden="true"></div>
-									<div>
-										<p class="card-title">Business Intelligence</p>
-										<p class="card-subtitle">The backbone of decision making</p>
-									</div>
-								</div>
-								<div class="img-container card-media">
-									<img class="img proposition-images" src="assets/images/business-intelligence.webp"
-									     alt="Business Intelligence" height="600" width="750" loading="lazy">
-								</div>
-								<div class="card-content">
-									<p>Data processing, generating papers, drawings, calculations, KPIs, processes and
-										other data driven knowledge conducive to tactical management and decision making
-										are a key element to any organization’s growth and prosperity.</p>
-								</div>
-								<div class="card-actions">
-									<a class="btn btn-outline" href="#contact">Contact</a>
-									<a class="btn btn-accent" href="#business-intelligence">Read more</a>
-								</div>
+				<section class="section">
+					<div class="container">
+						<div class="split">
+							<div class="split-body">
+								<p class="eyebrow">About</p>
+								<h2>What is CapChaos doing?</h2>
+								<p>This is <a href="https://www.linkedin.com/in/franzgerhart/" target="_blank" rel="noopener noreferrer">me</a> and my network of professionals providing services to organizations in need of help with</p>
+								<ul>
+								<li><a href="#business-intelligence">business intelligence</a>,</li>
+								<li><a href="#software-strategy">software strategy</a> and</li>
+								<li><a href="#tactical-management">tactical management</a>.</li>
+								</ul>
+								<p>I am fluent in bridging the gap between low-level tactical decision making and high-level strategic planning, ensuring that one doesn’t obliterate the other. As an iGaming veteran and enthusiast in enterprise-grade software development I very much enjoy challenging markets and industries.</p>
+								<p>IT in particular is predicated upon ever-changing technology stacks that provide opportunity in every obstacle. I am passionate about finding such opportunities by crafting applications, designing architecture, and developing business logic.</p>
 							</div>
-						</div>
-
-						<div class="col-33">
-							<div class="card">
-								<div class="card-header">
-									<div class="card-avatar avatar-strategy" aria-hidden="true"></div>
-									<div>
-										<p class="card-title">Software Strategy</p>
-										<p class="card-subtitle">Choosing the right tech stack</p>
-									</div>
-								</div>
-								<div class="img-container card-media">
-									<img class="img proposition-images" src="assets/images/software-strategy.webp"
-									     alt="Software Strategy" height="600" width="750" loading="lazy">
-								</div>
-								<div class="card-content">
-									<p>Server-less cloud architecture or bare metal deployment? React or Angular? MySQL
-										or PostgreSQL? There are pros and cons on either side of the aisle but decisions
-										can’t be taken lightly and are often close to irreversible!</p>
-								</div>
-								<div class="card-actions">
-									<a class="btn btn-outline" href="#contact">Contact</a>
-									<a class="btn btn-accent" href="#software-strategy">Read more</a>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-33">
-							<div class="card">
-								<div class="card-header">
-									<div class="card-avatar avatar-tactical" aria-hidden="true"></div>
-									<div>
-										<p class="card-title">Tactical Management</p>
-										<p class="card-subtitle">Beyond strategic planning</p>
-									</div>
-								</div>
-								<div class="img-container card-media">
-									<img class="img proposition-images" src="assets/images/tactical-management.webp"
-									     alt="Tactical Management" height="600" width="750" loading="lazy">
-								</div>
-								<div class="card-content">
-									<p>Great strategy is powerful only when in the hands of dedicated people, capable of
-										executing on its subject matter, possessing the needed skills, using the right
-										set of tools and willing to pursue change in its most challenging format.</p>
-								</div>
-								<div class="card-actions">
-									<a class="btn btn-outline" href="#contact">Contact</a>
-									<a class="btn btn-accent" href="#tactical-management">Read more</a>
-								</div>
+							<div class="split-media">
+								<img src="/assets/images/kanban.webp" alt="Kanban board illustration" width="400" height="400" loading="lazy">
 							</div>
 						</div>
 					</div>
+				</section>
 
-				</div>
+				<section class="section section--tint" id="home-services">
+					<div class="container">
+						<div class="section-head section-head--center">
+							<p class="eyebrow eyebrow--center">Services</p>
+							<h2>Value propositions</h2>
+							<p class="lead">The three core areas CapChaos will be valuable for your organization.</p>
+						</div>
+						<div class="card-grid">
+							<article class="card">
+								<div class="card-media">
+									<img src="/assets/images/business-intelligence.webp" alt="Business Intelligence" width="750" height="600" loading="lazy">
+								</div>
+								<div class="card-body">
+									<p class="card-eyebrow">The backbone of decision making.</p>
+									<h3>Business Intelligence</h3>
+									<p>Data processing, generating papers, drawings, calculations, KPIs, processes and other data driven knowledge conducive to tactical management and decision making are a key element to any organization’s growth and prosperity.</p>
+									<a class="arrow-link" href="#business-intelligence">Read more<span class="visually-hidden"> about Business Intelligence</span></a>
+								</div>
+							</article>
+							<article class="card">
+								<div class="card-media">
+									<img src="/assets/images/software-strategy.webp" alt="Software Strategy" width="750" height="600" loading="lazy">
+								</div>
+								<div class="card-body">
+									<p class="card-eyebrow">Choosing the right tech stack.</p>
+									<h3>Software Strategy</h3>
+									<p>Server-less cloud architecture or bare metal deployment? React or Angular? MySQL or PostgreSQL? There are pros and cons on either side of the aisle but decisions can’t be taken lightly and are often close to irreversible!</p>
+									<a class="arrow-link" href="#software-strategy">Read more<span class="visually-hidden"> about Software Strategy</span></a>
+								</div>
+							</article>
+							<article class="card">
+								<div class="card-media">
+									<img src="/assets/images/tactical-management.webp" alt="Tactical Management" width="750" height="600" loading="lazy">
+								</div>
+								<div class="card-body">
+									<p class="card-eyebrow">Beyond strategic planning.</p>
+									<h3>Tactical Management</h3>
+									<p>Great strategy is powerful only when in the hands of dedicated people, capable of executing on its subject matter, possessing the needed skills, using the right set of tools and willing to pursue change in its most challenging format.</p>
+									<a class="arrow-link" href="#tactical-management">Read more<span class="visually-hidden"> about Tactical Management</span></a>
+								</div>
+							</article>
+						</div>
+					</div>
+				</section>
+
+				<section class="section">
+					<div class="container">
+						<div class="split split--reverse">
+							<div class="split-body">
+								<p class="eyebrow">The value</p>
+								<h2>How am I useful for you?</h2>
+								<p>Looking at projects, there are four things that can and often will cause issues and subsequent delays.</p>
+								<ul>
+								<li>Change requests</li>
+								<li>Communication</li>
+								<li>Conflict</li>
+								<li>Lack of knowledge in project management methodology</li>
+								</ul>
+								<p>You may rightly say there are more, however this to me is and always was the highest observable order problems may be deduced from. Change requests are inevitable and constant. One can do well in orchestrating teams around them, but they will keep coming.</p>
+								<p>Good managers can do an outstanding job and become effective in handling conflict and communication. Excellent managers also use applied knowledge in management methodology which makes them efficient.</p>
+								<p>I took me years to develop the skill and apply that knowledge, find the right tools &amp; processes for the project, and understand how to scale them.</p>
+								<p>Being effective gets the job done. Being efficient will get the job done repeatedly at high-quality and without fatigue. I will gladly assist your organisation in becoming more efficient.</p>
+							</div>
+							<div class="split-media">
+								<img src="/assets/images/how-to-help.webp" alt="Illustration of collaborative problem solving" width="400" height="400" loading="lazy">
+							</div>
+						</div>
+						<div class="split">
+							<div class="split-body">
+								<p class="eyebrow">The boundaries</p>
+								<h2>What is it that I am not doing!</h2>
+								<p>There are things I am sure capable of doing but you are definitely better off letting others take care of them. The IT industry isn’t far off the medical sector in this regard. You’d probably never asked a cardiologist to fix your teeth. Conversely, your database replication won't be fixed by a fronted engineer.</p>
+								<p>This is not an exhaustive list, but you will recognize the pattern.</p>
+								<ul>
+								<li>Setting up your company website (WordPress etc.)</li>
+								<li>Web design</li>
+								<li>Graphics design</li>
+								<li>Content / copy</li>
+								<li>First- and second level employee IT support</li>
+								<li>E-Mail server administration</li>
+								<li>Backup and security solutions</li>
+								<li>Legal matters</li>
+								</ul>
+								<p>If you need that kind of help though, do contact me as well, I know the right people and will be happy to introduce them.</p>
+							</div>
+							<div class="split-media">
+								<img src="/assets/images/no-service.webp" alt="Illustration of services not offered" width="400" height="400" loading="lazy">
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="section">
+					<div class="container">
+						<div class="cta-band">
+							<h2>I will gladly assist your organisation in becoming more efficient.</h2>
+							<p>Simply get in touch by providing some basic information.</p>
+							<div class="btn-row">
+								<a class="btn btn-accent" href="#contact">Contact me</a>
+								<a class="btn btn-on-dark" href="https://www.linkedin.com/in/franzgerhart/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+							</div>
+						</div>
+					</div>
+				</section>
+
 			</article>
 
-			<!-- ========================================================
-			     Business Intelligence
-			     ======================================================== -->
-			<article class="article" id="business-intelligence" aria-label="Business Intelligence">
-				<div class="article-inner">
+			<!-- ==================== Business Intelligence ==================== -->
+			<article class="article" id="business-intelligence" aria-labelledby="business-intelligence-title">
 
-					<div class="hero hero-bi"></div>
+				<section class="hero hero--page hero-bi">
+					<div class="container hero-content">
+						<p class="eyebrow">Service</p>
+						<h1 class="hero-title" id="business-intelligence-title">Business Intelligence</h1>
+						<p class="hero-lead">The backbone of decision making.</p>
+					</div>
+				</section>
 
-					<h1 class="page-title">Business Intelligence</h1>
-
-					<div class="row-layout">
-						<div class="col-50">
-							<h2 class="center-text">Why do you need BI?</h2>
-							<p class="align-justify">The academia calls it the »VUCA-world«, being the volatile,
-								uncertain, complex, and ambiguous work environment that can be found everywhere these
-								days. Taking decisions in such environments is equally tough as it is required and
-								strongly depends on data. It’s impossible to be right all the time but with the right
-								foundation it is achievable to take correct decision frequently.</p>
-
-							<p class="align-justify">Decision-making can be broken down in five parts.</p>
-
+				<section class="section">
+					<div class="container with-aside">
+						<div class="prose">
+							<h2>Why do you need BI?</h2>
+							<p>The academia calls it the »VUCA-world«, being the volatile, uncertain, complex, and ambiguous work environment that can be found everywhere these days. Taking decisions in such environments is equally tough as it is required and strongly depends on data. It’s impossible to be right all the time but with the right foundation it is achievable to take correct decision frequently.</p>
+							<p>Decision-making can be broken down in five parts.</p>
 							<ul>
-								<li>Formulating the problem. That done, you already know there is an issue which is
-									great.
-								</li>
-								<li>Identify the goals to address the issue</li>
-								<li>Find the available options that support the goals</li>
-								<li>Pick one of the alternatives</li>
-								<li>Make further decisions during implementation</li>
+							<li>Formulating the problem. That done, you already know there is an issue which is great.</li>
+							<li>Identify the goals to address the issue</li>
+							<li>Find the available options that support the goals</li>
+							<li>Pick one of the alternatives</li>
+							<li>Make further decisions during implementation</li>
 							</ul>
+							<p>Eventually the decisions enterprises must make are predicated upon the presence of viable options to choose from. A mix of tools, programming languages and analytical skills are what it takes to consolidate information into options.</p>
+							<p>Supporting my client’s decision-making process by providing relevant business intelligence is part of my daily routine. I will be happy to provide these services to you!</p>
+						</div>
 
-							<p class="align-justify">Eventually the decisions enterprises must make are predicated upon
-								the presence of viable options to choose from. A mix of tools, programming languages and
-								analytical skills are what it takes to consolidate information into options.</p>
-							<p class="align-justify">Supporting my client’s decision-making process by providing
-								relevant business intelligence is part of my daily routine. I will be happy to provide
-								these services to you!</p>
-
+						<aside class="aside-card">
+							<h2>Get in touch</h2>
+							<p>Simply get in touch by providing some basic information.</p>
 							<div class="btn-row">
 								<a class="btn btn-primary" href="#contact">Contact me</a>
 							</div>
+							<hr>
+							<p class="eyebrow">Other services</p>
+							<ul class="aside-links">
+							<li><a href="#software-strategy">Software Strategy</a></li>
+							<li><a href="#tactical-management">Tactical Management</a></li>
+							</ul>
+						</aside>
+					</div>
+				</section>
+
+				<section class="section section--tint">
+					<div class="container">
+						<div class="section-head">
+							<p class="eyebrow">What am I delivering?</p>
+							<h2>What’s the process?</h2>
+							<p class="lead">I am assuming that you have a »strategy« (which is why its beyond my scope) and a desire for »outflow« (what you earn)! That given, I am left with offering you »output« (the work) and »outcome« (the result) that result in outflow.</p>
+							<p>Looking at the following process, point 1 – 4 will get you output. If you hire me for 5 too, you will get outcome.</p>
 						</div>
+						<ol class="steps">
+							<li class="step">
+								<h3 class="step-title">Tell me what I may assist you with</h3>
+								<p>Contact me, let’s sign an NDA and then talk about your topics in as much or little detail as you deem fit. Ideally you explain to me what kind of issues you have been experiencing and how they are affecting your business.</p>
+							</li>
+							<li class="step">
+								<h3 class="step-title">Onboarding process and setting up scope of work</h3>
+								<p>I will immediately arrange for a personal meeting (either physically or via Skype, Slack, Teams, Discord, …, whatever suits you most) to discuss the information presented and set up a preliminary scope of work.</p>
+							</li>
+							<li class="step">
+								<h3 class="step-title">Arranging for stakeholder conversations</h3>
+								<p>After understanding the situation, I would deliberate the topic at hand with present stakeholders, reviewing the tools used and the methodology applied.</p>
+								<p>At this point you have likely invested between 5-10 working hours from your team which will allow me to come up with a viable concept.</p>
+							</li>
+							<li class="step">
+								<h3 class="step-title">Delivery of a white paper for tackling the issue</h3>
+								<p>After having gathered all relevant information, I will swiftly generate a paper highlighting the steps to be taken to achieve outcome.</p>
+							</li>
+							<li class="step">
+								<h3 class="step-title">Leading the implementation process<span class="step-flag">optional</span></h3>
+								<p>Your team can handle it from here, but I will be more than happy to lead the process and, as the case may be, take over executive responsibility for delivering outcome.</p>
+							</li>
+						</ol>
+					</div>
+				</section>
 
-						<div class="col-50">
-							<h2 class="center-text">What am I delivering?</h2>
-							<p class="align-justify">I am assuming that you have a »strategy« (which is why its beyond
-								my scope) and a desire for »outflow« (what you earn)! That given, I am left with
-								offering you »output« (the work) and »outcome« (the result) that result in outflow.</p>
-							<p class="align-justify">Looking at the following process, point 1 – 4 will get you output.
-								If you hire me for 5 too, you will get outcome.</p>
-
-							<h2 class="center-text">What’s the process?</h2>
-							<p class="align-justify">Simply get in touch by providing some basic information according
-								to this process:</p>
-
-							<ol class="stepper">
-								<li class="step">
-									<button class="step-header" type="button" aria-expanded="true">
-										<span class="step-number">1</span>
-										<span>Tell me what I may assist you with</span>
-									</button>
-									<div class="step-body">
-										<p class="align-justify">Contact me, let’s sign an NDA and then talk about your
-											topics in as much or little detail as you deem fit. Ideally you explain to
-											me what kind of issues you have been experiencing and how they are affecting
-											your business.</p>
-										<div class="btn-row">
-											<button class="btn btn-outline" type="button" data-step-next>Next</button>
-										</div>
-									</div>
-								</li>
-								<li class="step">
-									<button class="step-header" type="button" aria-expanded="false">
-										<span class="step-number">2</span>
-										<span>Onboarding process and setting up scope of work</span>
-									</button>
-									<div class="step-body" hidden>
-										<p class="align-justify">I will immediately arrange for a personal meeting
-											(either physically or via Skype, Slack, Teams, Discord, …, whatever suits
-											you most) to discuss the information presented and set up a preliminary
-											scope of work.</p>
-										<div class="btn-row">
-											<button class="btn btn-outline-warn" type="button" data-step-prev>Back
-											</button>
-											<button class="btn btn-outline" type="button" data-step-next>Next</button>
-										</div>
-									</div>
-								</li>
-								<li class="step">
-									<button class="step-header" type="button" aria-expanded="false">
-										<span class="step-number">3</span>
-										<span>Arranging for stakeholder conversations</span>
-									</button>
-									<div class="step-body" hidden>
-										<p class="align-justify">After understanding the situation, I would deliberate
-											the topic at hand with present stakeholders, reviewing the tools used and
-											the methodology applied.</p>
-										<p class="align-justify">At this point you have likely invested between 5-10
-											working hours from your team which will allow me to come up with a viable
-											concept.</p>
-										<div class="btn-row">
-											<button class="btn btn-outline-warn" type="button" data-step-prev>Back
-											</button>
-											<button class="btn btn-outline" type="button" data-step-next>Next</button>
-										</div>
-									</div>
-								</li>
-								<li class="step">
-									<button class="step-header" type="button" aria-expanded="false">
-										<span class="step-number">4</span>
-										<span>Delivery of a white paper for tackling the issue</span>
-									</button>
-									<div class="step-body" hidden>
-										<p class="align-justify">After having gathered all relevant information, I will
-											swiftly generate a paper highlighting the steps to be taken to achieve
-											outcome.</p>
-										<div class="btn-row">
-											<button class="btn btn-outline-warn" type="button" data-step-prev>Back
-											</button>
-											<button class="btn btn-outline" type="button" data-step-next>Next</button>
-										</div>
-									</div>
-								</li>
-								<li class="step">
-									<button class="step-header" type="button" aria-expanded="false">
-										<span class="step-number">5</span>
-										<span>Leading the implementation process
-											<span class="step-optional">(optional)</span></span>
-									</button>
-									<div class="step-body" hidden>
-										<p class="align-justify">Your team can handle it from here, but I will be more
-											than happy to lead the process and, as the case may be, take over executive
-											responsibility for delivering outcome.</p>
-										<div class="btn-row">
-											<button class="btn btn-outline-warn" type="button" data-step-prev>Back
-											</button>
-											<a class="btn btn-primary" href="#contact">Contact me</a>
-										</div>
-									</div>
-								</li>
-							</ol>
+				<section class="section">
+					<div class="container">
+						<div class="cta-band">
+							<h2>I will gladly assist your organisation in becoming more efficient.</h2>
+							<p>Simply get in touch by providing some basic information.</p>
+							<div class="btn-row">
+								<a class="btn btn-accent" href="#contact">Contact me</a>
+								<a class="btn btn-on-dark" href="https://www.linkedin.com/in/franzgerhart/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+							</div>
 						</div>
 					</div>
+				</section>
 
-				</div>
 			</article>
 
-			<!-- ========================================================
-			     Software Strategy
-			     ======================================================== -->
-			<article class="article" id="software-strategy" aria-label="Software Strategy">
-				<div class="article-inner">
+			<!-- ==================== Software Strategy ==================== -->
+			<article class="article" id="software-strategy" aria-labelledby="software-strategy-title">
 
-					<div class="hero hero-strategy"></div>
+				<section class="hero hero--page hero-strategy">
+					<div class="container hero-content">
+						<p class="eyebrow">Service</p>
+						<h1 class="hero-title" id="software-strategy-title">Software Strategy</h1>
+						<p class="hero-lead">Choosing the right tech stack.</p>
+					</div>
+				</section>
 
-					<h1 class="page-title">Software Strategy</h1>
-
-					<div class="row-layout">
-						<div class="col-50">
-							<h2 class="center-text">Why do you need software strategy?</h2>
-							<p class="align-justify">As in general company strategy, software strategy can be broken
-								down into several segments with each one equally contributing to its success. The most
-								relevant are:</p>
+				<section class="section">
+					<div class="container with-aside">
+						<div class="prose">
+							<h2>Why do you need software strategy?</h2>
+							<p>As in general company strategy, software strategy can be broken down into several segments with each one equally contributing to its success. The most relevant are:</p>
 							<ul>
-								<li>Which tech stack to use?</li>
-								<li>Make or buy decision making!</li>
-								<li>Sourcing of personnel!</li>
+							<li>Which tech stack to use?</li>
+							<li>Make or buy decision making!</li>
+							<li>Sourcing of personnel!</li>
 							</ul>
+							<p>The tech stack chosen has the biggest impact on the other segments as compatibility of technology will determine what other technology can be bought or licensed from 3rd parties. Moreover, each technology has its level of popularity and thus a core of support, or lack thereof, which will affect recruitment of qualified personnel.</p>
+							<p>With over 15 years in enterprise grade software development and IT infrastructure I am providing guidance to my customers in selecting frontend framework solutions, application layer technology and scalable databases, with a proclivity towards Linux based infrastructure. That being said, I am proficient in utilizing the Microsoft toolchain and have access to engineers and experts on either side.</p>
+							<p>As a rule of thumb, not many technology-stacks can be scaled ad infinitum. Reviewing project scope, business plan and company strategy is paramount to my work in suggesting and/or implementing the tech-stack and 3rd party software eventually being deployed.</p>
+							<p>With 10+ years in collaborating with recruiting agencies and nearshoring partners, conducting hundreds of interviews from junior to senior staff and an average staff retention rate of 5+ years, I know where to find the right people for the job &amp; suitable to the projects budget.</p>
+						</div>
 
-							<p class="align-justify">The tech stack chosen has the biggest impact on the other segments
-								as compatibility of technology will determine what other technology can be bought or
-								licensed from 3rd parties. Moreover, each technology has its level of popularity and
-								thus a core of support, or lack thereof, which will affect recruitment of qualified
-								personnel.</p>
-							<p class="align-justify">With over 15 years in enterprise grade software development and IT
-								infrastructure I am providing guidance to my customers in selecting frontend framework
-								solutions, application layer technology and scalable databases, with a proclivity
-								towards Linux based infrastructure. That being said, I am proficient in utilizing the
-								Microsoft toolchain and have access to engineers and experts on either side.</p>
-							<p class="align-justify">As a rule of thumb, not many technology-stacks can be scaled ad
-								infinitum. Reviewing project scope, business plan and company strategy is paramount to
-								my work in suggesting and/or implementing the tech-stack and 3rd party software
-								eventually being deployed.</p>
-							<p class="align-justify">With 10+ years in collaborating with recruiting agencies and
-								nearshoring partners, conducting hundreds of interviews from junior to senior staff and
-								an average staff retention rate of 5+ years, I know where to find the right people for
-								the job &amp; suitable to the projects budget.</p>
-
+						<aside class="aside-card">
+							<h2>Get in touch</h2>
+							<p>Simply get in touch by providing some basic information.</p>
 							<div class="btn-row">
 								<a class="btn btn-primary" href="#contact">Contact me</a>
 							</div>
+							<hr>
+							<p class="eyebrow">Other services</p>
+							<ul class="aside-links">
+							<li><a href="#business-intelligence">Business Intelligence</a></li>
+							<li><a href="#tactical-management">Tactical Management</a></li>
+							</ul>
+						</aside>
+					</div>
+				</section>
+
+				<section class="section section--tint">
+					<div class="container">
+						<div class="section-head">
+							<p class="eyebrow">What am I delivering?</p>
+							<h2>What’s the process?</h2>
+							<p class="lead">I am assuming that you have a »strategy« (which is why its beyond my scope) and a desire for »outflow« (what you earn)! That given, I am left with offering you »output« (the work) and »outcome« (the result) that result in outflow.</p>
+							<p>Looking at the following process, point 1 – 4 will get you output. If you hire me for 5 too, you will get outcome.</p>
 						</div>
+						<ol class="steps">
+							<li class="step">
+								<h3 class="step-title">Tell me what I may assist you with</h3>
+								<p>Contact me, let’s sign an NDA and then talk about your topics in as much or little detail as you deem fit. Ideally you explain to me what kind of issues you have been experiencing and how they are affecting your business.</p>
+							</li>
+							<li class="step">
+								<h3 class="step-title">Onboarding process and setting up scope of work</h3>
+								<p>I will immediately arrange for a personal meeting (either physically or via Skype, Slack, Teams, Discord, …, whatever suits you most) to discuss the information presented and set up a preliminary scope of work.</p>
+							</li>
+							<li class="step">
+								<h3 class="step-title">Arranging for stakeholder conversations</h3>
+								<p>After understanding the situation, I would deliberate the topic at hand with present stakeholders, reviewing the tools used and the methodology applied.</p>
+								<p>At this point you have likely invested between 5-10 working hours from your team which will allow me to come up with a viable concept.</p>
+							</li>
+							<li class="step">
+								<h3 class="step-title">Delivery of a white paper for tackling the issue</h3>
+								<p>After having gathered all relevant information, I will swiftly generate a paper highlighting the steps to be taken to achieve outcome.</p>
+							</li>
+							<li class="step">
+								<h3 class="step-title">Leading the implementation process<span class="step-flag">optional</span></h3>
+								<p>Your team can handle it from here, but I will be more than happy to lead the process and, as the case may be, take over executive responsibility for delivering outcome.</p>
+							</li>
+						</ol>
+					</div>
+				</section>
 
-						<div class="col-50">
-							<h2 class="center-text">What am I delivering?</h2>
-							<p class="align-justify">I am assuming that you have a »strategy« (which is why its beyond
-								my scope) and a desire for »outflow« (what you earn)! That given, I am left with
-								offering you »output« (the work) and »outcome« (the result) that result in outflow.</p>
-							<p class="align-justify">Looking at the following process, point 1 – 4 will get you output.
-								If you hire me for 5 too, you will get outcome.</p>
-
-							<h2 class="center-text">What’s the process?</h2>
-							<p class="align-justify">Simply get in touch by providing some basic information according
-								to this process:</p>
-
-							<ol class="stepper">
-								<li class="step">
-									<button class="step-header" type="button" aria-expanded="true">
-										<span class="step-number">1</span>
-										<span>Tell me what I may assist you with</span>
-									</button>
-									<div class="step-body">
-										<p class="align-justify">Contact me, let’s sign an NDA and then talk about your
-											topics in as much or little detail as you deem fit. Ideally you explain to
-											me what kind of issues you have been experiencing and how they are affecting
-											your business.</p>
-										<div class="btn-row">
-											<button class="btn btn-outline" type="button" data-step-next>Next</button>
-										</div>
-									</div>
-								</li>
-								<li class="step">
-									<button class="step-header" type="button" aria-expanded="false">
-										<span class="step-number">2</span>
-										<span>Onboarding process and setting up scope of work</span>
-									</button>
-									<div class="step-body" hidden>
-										<p class="align-justify">I will immediately arrange for a personal meeting
-											(either physically or via Skype, Slack, Teams, Discord, …, whatever suits
-											you most) to discuss the information presented and set up a preliminary
-											scope of work.</p>
-										<div class="btn-row">
-											<button class="btn btn-outline-warn" type="button" data-step-prev>Back
-											</button>
-											<button class="btn btn-outline" type="button" data-step-next>Next</button>
-										</div>
-									</div>
-								</li>
-								<li class="step">
-									<button class="step-header" type="button" aria-expanded="false">
-										<span class="step-number">3</span>
-										<span>Arranging for stakeholder conversations</span>
-									</button>
-									<div class="step-body" hidden>
-										<p class="align-justify">After understanding the situation, I would deliberate
-											the topic at hand with present stakeholders, reviewing the tools used and
-											the methodology applied.</p>
-										<p class="align-justify">At this point you have likely invested between 5-10
-											working hours from your team which will allow me to come up with a viable
-											concept.</p>
-										<div class="btn-row">
-											<button class="btn btn-outline-warn" type="button" data-step-prev>Back
-											</button>
-											<button class="btn btn-outline" type="button" data-step-next>Next</button>
-										</div>
-									</div>
-								</li>
-								<li class="step">
-									<button class="step-header" type="button" aria-expanded="false">
-										<span class="step-number">4</span>
-										<span>Delivery of a white paper for tackling the issue</span>
-									</button>
-									<div class="step-body" hidden>
-										<p class="align-justify">After having gathered all relevant information, I will
-											swiftly generate a paper highlighting the steps to be taken to achieve
-											outcome.</p>
-										<div class="btn-row">
-											<button class="btn btn-outline-warn" type="button" data-step-prev>Back
-											</button>
-											<button class="btn btn-outline" type="button" data-step-next>Next</button>
-										</div>
-									</div>
-								</li>
-								<li class="step">
-									<button class="step-header" type="button" aria-expanded="false">
-										<span class="step-number">5</span>
-										<span>Leading the implementation process
-											<span class="step-optional">(optional)</span></span>
-									</button>
-									<div class="step-body" hidden>
-										<p class="align-justify">Your team can handle it from here, but I will be more
-											than happy to lead the process and, as the case may be, take over executive
-											responsibility for delivering outcome.</p>
-										<div class="btn-row">
-											<button class="btn btn-outline-warn" type="button" data-step-prev>Back
-											</button>
-											<a class="btn btn-primary" href="#contact">Contact me</a>
-										</div>
-									</div>
-								</li>
-							</ol>
+				<section class="section">
+					<div class="container">
+						<div class="cta-band">
+							<h2>I will gladly assist your organisation in becoming more efficient.</h2>
+							<p>Simply get in touch by providing some basic information.</p>
+							<div class="btn-row">
+								<a class="btn btn-accent" href="#contact">Contact me</a>
+								<a class="btn btn-on-dark" href="https://www.linkedin.com/in/franzgerhart/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+							</div>
 						</div>
 					</div>
+				</section>
 
-				</div>
 			</article>
 
-			<!-- ========================================================
-			     Tactical Management
-			     ======================================================== -->
-			<article class="article" id="tactical-management" aria-label="Tactical Management">
-				<div class="article-inner">
+			<!-- ==================== Tactical Management ==================== -->
+			<article class="article" id="tactical-management" aria-labelledby="tactical-management-title">
 
-					<div class="hero hero-tactical"></div>
+				<section class="hero hero--page hero-tactical">
+					<div class="container hero-content">
+						<p class="eyebrow">Service</p>
+						<h1 class="hero-title" id="tactical-management-title">Tactical Management</h1>
+						<p class="hero-lead">Beyond strategic planning.</p>
+					</div>
+				</section>
 
-					<h1 class="page-title">Tactical Management</h1>
-
-					<div class="row-layout">
-						<div class="col-50">
-							<h2 class="center-text">Why do you need tactical management?</h2>
-							<p class="align-justify">Strategy is suggesting what you are supposed to do, tactical
-								management is working out how you should do it. It’s the eternal sequence of first
-								»doing the rights things« and then »doing those things the right way«!</p>
-
-							<p class="align-justify">Tactical management will use alternating management methodology
-								conducive to achieving the objectives that are supporting long-term strategy by
-								navigating day-to-day operations through pertinent initiatives. Tasks and
-								responsibilities attributable to tactical managers include:</p>
+				<section class="section">
+					<div class="container with-aside">
+						<div class="prose">
+							<h2>Why do you need tactical management?</h2>
+							<p>Strategy is suggesting what you are supposed to do, tactical management is working out how you should do it. It’s the eternal sequence of first »doing the rights things« and then »doing those things the right way«!</p>
+							<p>Tactical management will use alternating management methodology conducive to achieving the objectives that are supporting long-term strategy by navigating day-to-day operations through pertinent initiatives. Tasks and responsibilities attributable to tactical managers include:</p>
 							<ul>
-								<li>Conflict management and dispute resolution</li>
-								<li>Knowledge management and documentation</li>
-								<li>Sourcing and training of personnel</li>
-								<li>Risk management</li>
-								<li>Reporting and data analysis</li>
-								<li>Acting as communication interface</li>
+							<li>Conflict management and dispute resolution</li>
+							<li>Knowledge management and documentation</li>
+							<li>Sourcing and training of personnel</li>
+							<li>Risk management</li>
+							<li>Reporting and data analysis</li>
+							<li>Acting as communication interface</li>
 							</ul>
-							<p class="align-justify">Day-to-day operations is following ongoing topics, often chasing
-								short term goals and KPIs. With the view narrowed down on these near-term matters, it
-								will become difficult to see how a transition purported in long-term strategy may
-								materialize under present circumstances. For this reason, tactical managers are
-								cornerstone assets as change agents in transforming a status-quo-mission into a
-								5-years-vision, thus bridging the gap between strategists and operations.</p>
-							<p class="align-justify">Weather teams are organized under agile- or traditional
-								project-management-principles, productive workspaces must be well structured and
-								intuitive, providing low-level information alongside with visual reference towards its
-								bigger picture.</p>
-							<p class="align-justify">Creating structure, driving change, and navigating teams towards
-								delivering on objectives has been my domain for the past 15+ years, using suitable
-								management methodology and cutting-edge toolchains.</p>
+							<p>Day-to-day operations is following ongoing topics, often chasing short term goals and KPIs. With the view narrowed down on these near-term matters, it will become difficult to see how a transition purported in long-term strategy may materialize under present circumstances. For this reason, tactical managers are cornerstone assets as change agents in transforming a status-quo-mission into a 5-years-vision, thus bridging the gap between strategists and operations.</p>
+							<p>Weather teams are organized under agile- or traditional project-management-principles, productive workspaces must be well structured and intuitive, providing low-level information alongside with visual reference towards its bigger picture.</p>
+							<p>Creating structure, driving change, and navigating teams towards delivering on objectives has been my domain for the past 15+ years, using suitable management methodology and cutting-edge toolchains.</p>
+						</div>
 
+						<aside class="aside-card">
+							<h2>Get in touch</h2>
+							<p>Simply get in touch by providing some basic information.</p>
 							<div class="btn-row">
 								<a class="btn btn-primary" href="#contact">Contact me</a>
 							</div>
+							<hr>
+							<p class="eyebrow">Other services</p>
+							<ul class="aside-links">
+							<li><a href="#business-intelligence">Business Intelligence</a></li>
+							<li><a href="#software-strategy">Software Strategy</a></li>
+							</ul>
+						</aside>
+					</div>
+				</section>
+
+				<section class="section section--tint">
+					<div class="container">
+						<div class="section-head">
+							<p class="eyebrow">What am I delivering?</p>
+							<h2>What’s the process?</h2>
+							<p class="lead">I am assuming that you have a »strategy« (which is why its beyond my scope) and a desire for »outflow« (what you earn)! That given, I am left with offering you »output« (the work) and »outcome« (the result) that result in outflow.</p>
+							<p>Looking at the following process, point 1 – 4 will get you output. If you hire me for 5 too, you will get outcome.</p>
 						</div>
+						<ol class="steps">
+							<li class="step">
+								<h3 class="step-title">Tell me what I may assist you with</h3>
+								<p>Contact me, let’s sign an NDA and then talk about your topics in as much or little detail as you deem fit. Ideally you explain to me what kind of issues you have been experiencing and how they are affecting your business.</p>
+							</li>
+							<li class="step">
+								<h3 class="step-title">Onboarding process and setting up scope of work</h3>
+								<p>I will immediately arrange for a personal meeting (either physically or via Skype, Slack, Teams, Discord, …, whatever suits you most) to discuss the information presented and set up a preliminary scope of work.</p>
+							</li>
+							<li class="step">
+								<h3 class="step-title">Arranging for stakeholder conversations</h3>
+								<p>After understanding the situation, I would deliberate the topic at hand with present stakeholders, reviewing the tools used and the methodology applied.</p>
+								<p>At this point you have likely invested between 5-10 working hours from your team which will allow me to come up with a viable concept.</p>
+							</li>
+							<li class="step">
+								<h3 class="step-title">Delivery of a white paper for tackling the issue</h3>
+								<p>After having gathered all relevant information, I will swiftly generate a paper highlighting the steps to be taken to achieve outcome.</p>
+							</li>
+							<li class="step">
+								<h3 class="step-title">Leading the implementation process<span class="step-flag">optional</span></h3>
+								<p>Your team can handle it from here, but I will be more than happy to lead the process and, as the case may be, take over executive responsibility for delivering outcome.</p>
+							</li>
+						</ol>
+					</div>
+				</section>
 
-						<div class="col-50">
-							<h2 class="center-text">What am I delivering?</h2>
-							<p class="align-justify">I am assuming that you have a »strategy« (which is why its beyond
-								my scope) and a desire for »outflow« (what you earn)! That given, I am left with
-								offering you »output« (the work) and »outcome« (the result) that result in outflow.</p>
-							<p class="align-justify">Looking at the following process, point 1 – 4 will get you output.
-								If you hire me for 5 too, you will get outcome.</p>
-
-							<h2 class="center-text">What’s the process?</h2>
-							<p class="align-justify">Simply get in touch by providing some basic information according
-								to this process:</p>
-
-							<ol class="stepper">
-								<li class="step">
-									<button class="step-header" type="button" aria-expanded="true">
-										<span class="step-number">1</span>
-										<span>Tell me what I may assist you with</span>
-									</button>
-									<div class="step-body">
-										<p class="align-justify">Contact me, let’s sign an NDA and then talk about your
-											topics in as much or little detail as you deem fit. Ideally you explain to
-											me what kind of issues you have been experiencing and how they are affecting
-											your business.</p>
-										<div class="btn-row">
-											<button class="btn btn-outline" type="button" data-step-next>Next</button>
-										</div>
-									</div>
-								</li>
-								<li class="step">
-									<button class="step-header" type="button" aria-expanded="false">
-										<span class="step-number">2</span>
-										<span>Onboarding process and setting up scope of work</span>
-									</button>
-									<div class="step-body" hidden>
-										<p class="align-justify">I will immediately arrange for a personal meeting
-											(either physically or via Skype, Slack, Teams, Discord, …, whatever suits
-											you most) to discuss the information presented and set up a preliminary
-											scope of work.</p>
-										<div class="btn-row">
-											<button class="btn btn-outline-warn" type="button" data-step-prev>Back
-											</button>
-											<button class="btn btn-outline" type="button" data-step-next>Next</button>
-										</div>
-									</div>
-								</li>
-								<li class="step">
-									<button class="step-header" type="button" aria-expanded="false">
-										<span class="step-number">3</span>
-										<span>Arranging for stakeholder conversations</span>
-									</button>
-									<div class="step-body" hidden>
-										<p class="align-justify">After understanding the situation, I would deliberate
-											the topic at hand with present stakeholders, reviewing the tools used and
-											the methodology applied.</p>
-										<p class="align-justify">At this point you have likely invested between 5-10
-											working hours from your team which will allow me to come up with a viable
-											concept.</p>
-										<div class="btn-row">
-											<button class="btn btn-outline-warn" type="button" data-step-prev>Back
-											</button>
-											<button class="btn btn-outline" type="button" data-step-next>Next</button>
-										</div>
-									</div>
-								</li>
-								<li class="step">
-									<button class="step-header" type="button" aria-expanded="false">
-										<span class="step-number">4</span>
-										<span>Delivery of a white paper for tackling the issue</span>
-									</button>
-									<div class="step-body" hidden>
-										<p class="align-justify">After having gathered all relevant information, I will
-											swiftly generate a paper highlighting the steps to be taken to achieve
-											outcome.</p>
-										<div class="btn-row">
-											<button class="btn btn-outline-warn" type="button" data-step-prev>Back
-											</button>
-											<button class="btn btn-outline" type="button" data-step-next>Next</button>
-										</div>
-									</div>
-								</li>
-								<li class="step">
-									<button class="step-header" type="button" aria-expanded="false">
-										<span class="step-number">5</span>
-										<span>Leading the implementation process
-											<span class="step-optional">(optional)</span></span>
-									</button>
-									<div class="step-body" hidden>
-										<p class="align-justify">Your team can handle it from here, but I will be more
-											than happy to lead the process and, as the case may be, take over executive
-											responsibility for delivering outcome.</p>
-										<div class="btn-row">
-											<button class="btn btn-outline-warn" type="button" data-step-prev>Back
-											</button>
-											<a class="btn btn-primary" href="#contact">Contact me</a>
-										</div>
-									</div>
-								</li>
-							</ol>
+				<section class="section">
+					<div class="container">
+						<div class="cta-band">
+							<h2>I will gladly assist your organisation in becoming more efficient.</h2>
+							<p>Simply get in touch by providing some basic information.</p>
+							<div class="btn-row">
+								<a class="btn btn-accent" href="#contact">Contact me</a>
+								<a class="btn btn-on-dark" href="https://www.linkedin.com/in/franzgerhart/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+							</div>
 						</div>
 					</div>
+				</section>
 
-				</div>
 			</article>
 
-			<!-- ========================================================
-			     Contact
-			     ======================================================== -->
-			<article class="article" id="contact" aria-label="Contact">
-				<div class="article-inner">
+			<!-- ==================== Contact ==================== -->
+			<article class="article" id="contact" aria-labelledby="contact-title">
 
-					<div class="hero hero-contact"></div>
+				<section class="hero hero--page hero-contact">
+					<div class="container hero-content">
+						<p class="eyebrow">Get in touch</p>
+						<h1 class="hero-title" id="contact-title">Contact</h1>
+						<p class="hero-lead">Get in touch with me via e-mail or LinkedIn. Am looking forward to exploring the opportunity in working for your organization.</p>
+					</div>
+				</section>
 
-					<h1 class="page-title">Contact</h1>
-
-					<div class="row-layout row-center">
-						<div class="col-50">
-							<a class="contact-tile" href="https://www.linkedin.com/in/franzgerhart/" target="_blank"
-							   rel="noopener noreferrer">
-								<div class="img-container">
-									<img class="contact-images" alt="LinkedIn contact"
-									     src="assets/images/linkedIn.webp" height="350" width="350" loading="lazy">
-								</div>
+				<section class="section">
+					<div class="container">
+						<div class="contact-grid">
+							<a class="contact-card" href="mailto:franz.gerhart@capchaos.com">
+								<img src="/assets/images/email.webp" alt="Mail Icon" loading="lazy">
+								<h2>E-Mail</h2>
+								<p class="contact-value">franz.gerhart@capchaos.com</p>
+								<span class="arrow-link">Send a message</span>
 							</a>
-						</div>
-						<div class="col-50">
-							<a class="contact-tile" href="mailto:franz.gerhart@capchaos.com">
-								<div class="img-container">
-									<img class="contact-images" alt="eMail contact" src="assets/images/email.webp"
-									     height="350" width="350" loading="lazy">
-								</div>
+							<a class="contact-card" href="https://www.linkedin.com/in/franzgerhart/" target="_blank" rel="noopener noreferrer">
+								<img src="/assets/images/linkedIn.webp" alt="LinkedIn Icon"  loading="lazy">
+								<h2>LinkedIn</h2>
+								<p class="contact-value">in/franzgerhart</p>
+								<span class="arrow-link">Open profile</span>
 							</a>
 						</div>
 					</div>
+				</section>
 
-				</div>
+				<section class="section section--tint">
+					<div class="container">
+						<div class="measure">
+							<div>
+								<p class="eyebrow">Business details</p>
+								<h2>CapChaos e.U.</h2>
+								<ul class="detail-list">
+									<li><span class="detail-key">Proprietor</span><span class="detail-val">Franz Gerhart, BSc</span></li>
+									<li><span class="detail-key">Address</span><span class="detail-val">Hauptstraße 40, Top 2, 2504 Sooß, Austria</span></li>
+									<li><span class="detail-key">Company registration</span><span class="detail-val">FN556832X</span></li>
+									<li><span class="detail-key">VAT number</span><span class="detail-val">ATU76821637</span></li>
+								</ul>
+								<div class="btn-row">
+									<a class="btn btn-ghost btn-sm" href="#notice">Full legal notice</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
 			</article>
 
-			<!-- ========================================================
-			     Legal Notice
-			     ======================================================== -->
-			<article class="article" id="notice" aria-label="Legal Notice">
-				<div class="article-inner">
+			<!-- ==================== Legal Notice ==================== -->
+			<article class="article" id="notice" aria-labelledby="notice-title">
 
-					<div class="hero hero-legal"></div>
+				<section class="hero hero--page hero-legal">
+					<div class="container hero-content">
+						<p class="eyebrow">Legal</p>
+						<h1 class="hero-title" id="notice-title">Legal Notice</h1>
+						<p class="hero-lead">All the personal information required by law about CapChaos e.U.</p>
+					</div>
+				</section>
 
-					<h1 class="page-title">Notice</h1>
-
-					<div class="row-layout row-center">
-						<div class="col-70">
-							<p class="align-justify">Information pursuant to §5 E-Commerce Gesetz, §14
-								Unternehmensgesetzbuch as well as §63 Gewerbeordnung and disclosure requirement pursuant
-								to §25 Mediengesetz.</p>
-
-							<div class="table-wrapper">
+				<section class="section">
+					<div class="container">
+						<p class="lead measure">Information pursuant to §5 E-Commerce Gesetz, §14 Unternehmensgesetzbuch as well as §63 Gewerbeordnung and disclosure requirement pursuant to §25 Mediengesetz.</p>
+						<div class="table-card stack-top">
+							<div class="table-scroll">
 								<table class="data-table">
 									<thead>
 									<tr>
@@ -964,572 +710,595 @@
 									</thead>
 									<tbody>
 									<tr>
-										<td>Company Name</td>
+										<th scope="row">Company Name</th>
 										<td>CapChaos e.U.</td>
 									</tr>
 									<tr>
-										<td>Proprietor</td>
+										<th scope="row">Proprietor</th>
 										<td>Franz Gerhart, BSc</td>
 									</tr>
 									<tr>
-										<td>Address</td>
-										<td>Forstnergasse 3, 2540 Bad Vöslau, Austria</td>
+										<th scope="row">Address</th>
+										<td>Hauptstraße 40, Top 2, 2504 Sooß, Austria</td>
 									</tr>
 									<tr>
-										<td>General T&amp;Cs</td>
-										<td><a href="#terms">https://capchaos.com/#terms</a></td>
+										<th scope="row">General T&amp;Cs</th>
+										<td><a href="#terms">capchaos.com/#terms</a></td>
 									</tr>
 									<tr>
-										<td>Company registration number</td>
+										<th scope="row">Company registration number</th>
 										<td>FN556832X</td>
 									</tr>
 									<tr>
-										<td>Registrar</td>
+										<th scope="row">Registrar</th>
 										<td>Landesgericht Wiener Neustadt</td>
 									</tr>
 									<tr>
-										<td>Company format</td>
+										<th scope="row">Company format</th>
 										<td>Eingetragenes Einzelunternehmen</td>
 									</tr>
 									<tr>
-										<td>Purpose</td>
+										<th scope="row">Purpose</th>
 										<td>Software Development</td>
 									</tr>
 									<tr>
-										<td>VAT Number</td>
+										<th scope="row">VAT Number</th>
 										<td>ATU76821637</td>
 									</tr>
 									<tr>
-										<td>Contact</td>
-										<td>Mail:
-											<a href="mailto:franz.gerhart@capchaos.com">franz.gerhart@capchaos.com</a>
-										</td>
+										<th scope="row">Contact</th>
+										<td><a href="mailto:franz.gerhart@capchaos.com">franz.gerhart@capchaos.com</a></td>
 									</tr>
 									<tr>
-										<td>WKO</td>
-										<td>
-											<a href="https://www.wkoecg.at/Ecg.aspx?FirmaID=8567467a-98da-4090-8dcf-a4cc8c042d16"
-											   target="_blank" rel="noreferrer noopener">
-												<img src="assets/images/ecg.webp" alt="WKO ECG registration"
-												     loading="lazy">
-											</a>
-										</td>
+										<th scope="row">WKO</th>
+										<td><a href="https://www.wkoecg.at/Ecg.aspx?FirmaID=8567467a-98da-4090-8dcf-a4cc8c042d16" target="_blank" rel="noreferrer noopener"><img src="/assets/images/ecg.webp" alt="WKO ECG registration" width="169" height="23" loading="lazy"></a></td>
 									</tr>
 									</tbody>
 								</table>
 							</div>
 						</div>
 					</div>
+				</section>
 
-				</div>
 			</article>
 
-			<!-- ========================================================
-			     Terms
-			     ======================================================== -->
-			<article class="article" id="terms" aria-label="General Terms and Conditions">
-				<div class="article-inner">
+			<!-- ==================== Terms ==================== -->
+			<article class="article" id="terms" aria-labelledby="terms-title">
 
-					<div class="hero hero-legal"></div>
+				<section class="hero hero--page hero-legal">
+					<div class="container hero-content">
+						<p class="eyebrow">Legal</p>
+						<h1 class="hero-title" id="terms-title">General Terms &amp; Conditions</h1>
+						<p class="hero-lead">For the sale and the delivery of organisational and programming services and permissions to use copyrighted software products.</p>
+					</div>
+				</section>
 
-					<h1 class="page-title">General Terms &amp; Conditions</h1>
+				<section class="section">
+					<div class="container with-aside">
+						<div class="prose">
+							<section class="legal-section" id="terms-gtc">
+								<h2>For the sale and the delivery of organisational and programming services and permissions to use copyrighted software products</h2>
+								<ol class="legal-list">
+																<li>
+																	<h3>Scope of contract and validity</h3>
+																	<ol class="legal-list">
+																		<li>All orders and agreements shall only be legally binding insofar as these are
+																			signed in writing with the legally binding signature of the company of the
+																			Contractor and shall only obligate to the extent stated in the acceptance of
+																			order. Purchase conditions of the Client shall herewith be excluded for the
+																			respective legal transaction and the entire business relationship. All
+																			offers are generally non-binding.
+																		</li>
+																	</ol>
+																</li>
+																<li>
+																	<h3>Scope and assessment</h3>
+																	<ol class="legal-list">
+																		<li>The subject matter of an order may be:
+																			<ul>
+																				<li>Preparing organisational concepts</li>
+																				<li>Global and detail analyses</li>
+																				<li>Compiling individual programmes</li>
+																				<li>Delivering library (standard-) programmes</li>
+																				<li>Purchasing usage rights of software products</li>
+																				<li>Purchasing permissions to use copyrighted products</li>
+																				<li>Assisting in start-up (restructuring support)</li>
+																				<li>Telephone consultations</li>
+																				<li>Programme maintenance</li>
+																				<li>Compiling programme media</li>
+																				<li>Miscellaneous services</li>
+																			</ul>
+																		</li>
+																		<li>Individual organizational concepts and programmes shall be created depending
+																			on the nature and volume of binding information, documents and resources
+																			provided in full by the Client. These shall include sufficient practical
+																			test data and test facilities provided by the Client in due time, during
+																			normal working hours and at their own expense. Should the system be provided
+																			by the Client for the test work in regular operation, it shall be incumbent
+																			upon the Client to secure the regular data.
+																		</li>
+																		<li>The development of individual programmes shall be based on the written
+																			performance description chargeably created by the Contractor by means of the
+																			documents and information provided to them and/or that the Client provides.
+																			The Client shall review this performance description in terms of accuracy
+																			and completeness and mark it with a sign of acceptance. Subsequent change
+																			requests may lead to separate schedule and price agreements.
+																		</li>
+																		<li>The Client shall accept the respective programme package of individually
+																			developed software and/or programme adaptations four weeks after delivery at
+																			the latest. The Client shall verify acceptance on record. (Checks for
+																			accuracy and completeness by means of the performance description accepted
+																			by the Contractor using the test data mentioned in Clause 2.2.). Should the
+																			Client let the four-week period pass without acceptation, the delivered
+																			software shall be considered as accepted on the end date of the stipulated
+																			period. In any case, the software shall be considered as accepted should it
+																			be used in real operation by the Client.
+																			Any defects, that is to say deviations from the performance description
+																			agreed upon in writing, shall be reported to the Contractor in written form
+																			and with sufficient documentation by the Client; the Contractor shall make
+																			efforts to quickly rectify the defects. Should substantial defects, which
+																			are reported in writing, occur, i.e. real operation cannot be started or
+																			continued, new acceptance shall be necessary after rectification of defects.
+																			The Client shall not be entitled to refuse acceptance of software due to
+																			unsubstantial defects.
+																		</li>
+																		<li>When ordering library (standard) programmes, the Client shall confirm
+																			knowledge of the scope of services of the ordered programmes upon ordering.
+																		</li>
+																		<li>Should it become obvious during the course of work that fulfilment of the
+																			order, according to the performance description, is actually or legally
+																			impossible, the Contractor shall immediately notify the Client thereof.
+																			Should the Client not adapt the performance description accordingly and/or
+																			not create conditions that make possible fulfilment, the Contractor may
+																			refuse fulfilment. Should the inability of fulfilment be caused by default
+																			of the Client or by a retrospective change of the performance description by
+																			the Client, the Contractor shall be entitled to withdraw from the contract.
+																			The Client shall reimburse the Contractor any costs and expenses incurred
+																			for the work of the Contractor so far as well as for possible disassembly
+																			costs.
+																		</li>
+																		<li>Delivery of programme media, documentation and performance descriptions
+																			shall take place at the cost and risk of the Client. Further training and
+																			explanations requested by the Client shall be invoiced separately.
+																			Insurances shall only be obtained at the request of the Client.
+																		</li>
+																		<li>We expressly indicate that a barrier-free design, as defined by the Federal
+																			Law on Equality of Persons with Disabilities (Federal Disability
+																			Discrimination Act — BGStG) is not included in the quote, unless this was
+																			separately/individually requested by the Client. Should a barrier-free
+																			design not have been agreed upon, it shall be incumbent upon the Client to
+																			check the admissibility of the service with regard to the Federal Disability
+																			Discrimination Act. Moreover, the Client shall check the content they
+																			provide in regard to legal admissibility, particularly in terms of
+																			competition, brand, administrative law and copyright. The Contractor shall
+																			not be liable to the Client in cases of minor negligence or after fulfilling
+																			a possible duty to warn for the legal admissibility of content provided by
+																			the Client.
+																		</li>
+																	</ol>
+																</li>
+																<li>
+																	<h3>Prices, taxes and fees</h3>
+																	<ol class="legal-list">
+																		<li>All prices shall be calculated in Euros without VAT. These shall only apply
+																			for the respective current order. All prices mentioned are quoted from place
+																			of business of the Contractor. Expenses for programme media (e.g. CDs,
+																			magnetic tape, hard disks, floppy disks, streamer tapes, magnetic tape
+																			cassettes, etc.) as well as documents and possible contract fees shall be
+																			invoiced separately.
+																		</li>
+																		<li>For library (standard) programmes, the list prices valid on the day of
+																			delivery shall apply. For all other services (organisational consultation,
+																			programming, initial training, adjustment support, telephone consultation,
+																			etc.), the work shall be invoiced according to the rates effective on the
+																			day of performance. Deviations to the time required as provided by
+																			contractual pricing, which is not attributable to the Contractor, shall be
+																			invoiced according to actual time required.
+																		</li>
+																		<li>Costs for travel expenses, daily and accommodation allowances shall be
+																			separately invoiced to the Client at the respectively valid rates. Travel
+																			time shall be considered working hours.
+																		</li>
+																	</ol>
+																</li>
+																<li>
+																	<h3>Delivery date</h3>
+																	<ol class="legal-list">
+																		<li>The Contractor shall strive to meet the agreed deadlines of fulfilment
+																			(completion) as closely as possible.
+																		</li>
+																		<li>It shall only be possible to meet the intended deadlines of fulfilment
+																			provided the Client provides the Contractor with all necessary and complete
+																			work and files by the stated deadlines, particularly, the accepted
+																			performance description as stipulated in Clause 2.3., and provided the
+																			Client meets their obligation of cooperation to the necessary extent.
+																			The Contractor shall not be liable for delivery delays or cost increases
+																			caused by incorrect, incomplete or retrospectively changed statements or
+																			information and/or documents provided that lead to arrears of the
+																			Contractor. The Client shall bear any additional costs incurring therefrom.
+																		</li>
+																		<li>The Contractor shall be entitled to make partial deliveries and/or partial
+																			invoices for orders consisting of several units and/or programmes.
+																		</li>
+																	</ol>
+																</li>
+																<li>
+																	<h3>Payment</h3>
+																	<ol class="legal-list">
+																		<li>The invoices issued by the Contractor incl. VAT shall be paid within 14 days
+																			of receipt of the invoice without deductions and free of charges. In case of
+																			partial invoices, the payment conditions agreed upon for the entire order
+																			shall apply by analogy.
+																		</li>
+																		<li>The Contractor shall be entitled to issue an invoice upon delivery of each
+																			individual unit or service for orders consisting of several units (e.g.
+																			programmes and/or training, implementation in steps).
+																		</li>
+																		<li>Compliance with payment deadlines agreed upon shall form a crucial condition
+																			for the performance of deliveries and/or contractual fulfilment by the
+																			Contractor. Non-compliance with the agreed payments shall entitle the
+																			Contractor to stop ongoing work and to withdraw from the contract. The
+																			Client shall bear all expenses related to this as well as loss of profit of
+																			the Contractor.
+																			In case of payment arrears, the standard base interest rate shall be
+																			charged. Should two instalments (in case of partial payments) not be paid,
+																			the Contractor shall be entitled to have immediate maturity come into effect
+																			and to render any notes payable due for payment.
+																		</li>
+																		<li>The Client shall not be entitled to withhold payments due to incomplete
+																			overall deliveries, warranty or guarantee claims or defects.
+																		</li>
+																	</ol>
+																</li>
+																<li>
+																	<h3>Copyright and usage</h3>
+																	<ol class="legal-list">
+																		<li>After payment of the remuneration agreed, the Contractor shall grant the
+																			Client a non-exclusive, non-transferrable, non-sub-licensable and indefinite
+																			right to use the software for the hardware specified in the contract to the
+																			extent of the purchased licenses, for the simultaneous usage thereof at
+																			several work places and the right to use all work results based on the
+																			contract of the Contractor for in-house use. The Contractor shall retain all
+																			other rights.
+																			Involvement of the Client in the creation of software shall not entitle them
+																			to acquire any rights beyond use of the product as set forth in the
+																			Contract. Each infringement of the copyright of the Contractor shall result
+																			in claims for damages, in which case full amends are to be made.
+																		</li>
+																		<li>The Client shall be permitted to make copies for archiving and data security
+																			purposes subject to the condition that the software contains no express ban
+																			of the licensor or a third party, and that all copyright and ownership
+																			notices shall be transferred to the copies without alteration.
+																		</li>
+																		<li>Should the disclosure of the interfaces be necessary to produce the
+																			interoperability of the software covered by this Contract, the Client shall
+																			separately request this from the Contractor for a fee. Should the Contractor
+																			not meet this request and decompilation take place according to the Austrian
+																			Federal Law on Copyright, the results shall only be used to establish
+																			interoperability. Malpractice shall lead to damages.
+																		</li>
+																		<li>Should the Contractor provide the Client with software, whose licensee is a
+																			third party (e.g. standard software by Microsoft), the right of usage shall
+																			be provided by the license conditions of the licensee (manufacturer).
+																		</li>
+																	</ol>
+																</li>
+																<li>
+																	<h3>Right of withdrawal</h3>
+																	<ol class="legal-list">
+																		<li>The Client shall be entitled to withdraw from a respective order by letter
+																			sent by registered post, should the agreed delivery deadline not be met due
+																			to the sole fault or illegal actions of the Contractor provided that the
+																			agreed service is not performed to a considerable extent within an adequate
+																			grace period and the Client is not at fault.
+																		</li>
+																		<li>Force majeure, work conflicts, natural disasters and transport bans, as well
+																			as other circumstances outside of the influence of the Contractor, shall
+																			release the Contractor from their obligation to delivery and/or shall allow
+																			them to determine a new delivery deadline.
+																		</li>
+																		<li>It shall only be possible for the Client to cancel an order with written
+																			consent of the Contractor. Should the Contractor agree to cancelation of an
+																			order, they shall be entitled to charge a cancellation fee to the amount of
+																			30% of the overall project order value not yet invoiced in addition to the
+																			services already rendered and costs incurred.
+																		</li>
+																	</ol>
+																</li>
+																<li>
+																	<h3>Guarantee, maintenance, changes</h3>
+																	<ol class="legal-list">
+																		<li>The Contractor shall guarantee that the software fulfils the functions
+																			according to the respective documentation insofar as the software is used on
+																			the operating system stipulated in the contract.
+																			<ol class="legal-list">
+																				<li>Prerequisites for error correction shall be that:
+																					<ul>
+																						<li>The Client sufficiently describes the error in an error
+																							message and that this is definable for the Contractor
+																						</li>
+																						<li>The Client provides the Contractor with all documents
+																							necessary for the correction of the error
+																						</li>
+																						<li>The Client or an affiliated third party has not interfered
+																							with the software
+																						</li>
+																						<li>The software is used according to the designated conditions
+																							of use as stipulated in the documentation
+																						</li>
+																					</ul>
+																				</li>
+																				<li>With regard to guarantee, rectification shall, in any case, prevail
+																					over price reduction or redhibitory action. Should a notice of
+																					defects be justified, the deficiencies shall be rectified within an
+																					adequate period, in which the Client shall enable the Contractor for
+																					all measures necessary for examination and rectification. Section
+																					924 of the Austrian Civil Code ‘Assumption of Deficiency’ shall be
+																					excluded.
+																				</li>
+																				<li>The Contractor shall, free of charge, implement corrections and
+																					additions, which become necessary due to organisational and
+																					technical defects of the programme, until transferral of the agreed
+																					services, insofar as these are attributable to the Contractor.
+																				</li>
+																			</ol>
+																		</li>
+																		<li>The Client shall bear the costs for assistance, incorrect diagnosis,
+																			correction of errors and emergency maintenance attributable to the Client as
+																			well as other corrections, changes and additions. This shall also apply to
+																			rectification of deficiencies, should the Client or a third party make
+																			programme changes, additions and other interferences.
+																		</li>
+																		<li>Furthermore, the Contractor shall not be liable for errors, disruptions or
+																			damage caused by improper use, changes in components of the operating
+																			system, interfaces or parameters, the use of inadequate organisational means
+																			or data storage media (as far as these are required), abnormal operating
+																			conditions (particularly deviations of installation and storage conditions)
+																			or transport damage.
+																		</li>
+																		<li>The Client shall lose any guarantee from the Contractor for programmes that
+																			are retrospectively changed by in-house software engineers or third parties.
+																		</li>
+																		<li>Insofar as changing or adding to existing programmes forms the subject
+																			matter of an order, the guarantee shall apply to the change or addition. The
+																			guarantee for the original programme shall not be renewed by this.
+																		</li>
+																		<li>Guarantee claims shall lapse after six (6) months from transferral.</li>
+																	</ol>
+																</li>
+																<li>
+																	<h3>Liability</h3>
+																	<ol class="legal-list">
+																		<li>The Contractor shall only be liable to the Client for damage the Contractor
+																			verifiably causes in cases of gross negligence. This shall also apply
+																			mutatis mutandis to damage caused by third parties brought in by the
+																			Contractor. In case of bodily injuries caused by the Contractor, the
+																			Contractor shall be liable without limitation.
+																		</li>
+																		<li>Liability for indirect damage, e.g. loss of profit, costs related to
+																			interruptions, data losses or claims of third parties, shall be expressly
+																			excluded.
+																		</li>
+																		<li>Claims for damages shall lapse according to legal provisions, however, at
+																			the latest after one year starting from the knowledge of the damage and the
+																			person responsible for this.
+																		</li>
+																		<li>Should the Contractor fulfil work with the assistance of a third party and
+																			any guarantee and/or liability claims arise against this third party
+																			therefrom, the Contractor shall cede those claims to the Client. In such
+																			cases, the Client shall focus on this third party.
+																		</li>
+																		<li>Should data backup be expressly agreed upon as a service, liability for the
+																			loss of data shall not be excluded, deviating from Clause 9.2, however,
+																			restoration of the data shall be limited to a maximum of 10% of the total
+																			order sum per case of damage, however, with an overall maximum of EUR 5,000.
+																			Further claims for damages and guarantees of the Client than those
+																			stipulated in this Contract shall be excluded, regardless of legal basis.
+																		</li>
+																		<li>The Contractors overall liability shall be limited to the amounts actually
+																			paid by the Client to the Contractor.
+																		</li>
+																	</ol>
+																</li>
+																<li>
+																	<h3>Loyalty</h3>
+																	<ol class="legal-list">
+																		<li>The contractual partners agree to mutual loyalty. Both shall refrain from
+																			headhunting and employing, even via third parties, employees of the
+																			respective other contractual partner, who work on the fulfilment of orders,
+																			for the term of contract and twelve months after the contract terminates.
+																			Any contractual partner infringing this clause shall be obligated to pay
+																			lump-sum indemnification to the amount of one annual salary of the employee.
+																		</li>
+																	</ol>
+																</li>
+																<li>
+																	<h3>Non-disclosure</h3>
+																	<ol class="legal-list">
+																		<li>The Contractor shall obligate their employees to fulfil the provisions
+																			stipulated in Section 6 of the Austrian Data Protection Act.
+																		</li>
+																	</ol>
+																</li>
+																<li>
+																	<h3>Miscellaneous</h3>
+																	<ol class="legal-list">
+																		<li>Should clauses of this Contract be or become invalid, this shall not affect
+																			the validity of remaining subject matter of the Contract. The contractual
+																			partners shall cooperate in order to find a regulation which comes as close
+																			as possible to the intention of the invalid clauses.
+																		</li>
+																	</ol>
+																</li>
+																<li>
+																	<h3>Final Provisions</h3>
+																	<ol class="legal-list">
+																		<li>Insofar as nothing else is agreed on, only the legal provisions regarding
+																			business-to-business transactions according to Austrian law shall apply,
+																			even if the order is implemented abroad. The local jurisdiction of the
+																			objectively competent court for the place of business of the Contractor
+																			shall be exclusively agreed upon for possible disputes. Pursuant to the
+																			Austrian Consumer Protection Law (KSchG), the Terms and Conditions above
+																			shall be valid insofar as the Austrian Consumer Protection Law provides no
+																			differing obligatory provisions for selling to consumers.
+																		</li>
+																		<li>In the event that any disputes, which cannot be solved by mutual agreement,
+																			arise from this Contract, the parties to the contract agree to engage a
+																			listed mediator (Austrian Civil Rights Mediation Law (ZivMediatG)
+																			specialized in business mediation from the list of the Austrian Ministry of
+																			Justice in order to reconcile these out of court. Should no mutual agreement
+																			regarding the selection of the business mediator or with regard to content
+																			be possible, legal measures shall be initiated no sooner than one month
+																			after the negotiations fail.
+																		</li>
+																		<li>In the event that mediation could not be held or was discontinued, any
+																			litigation initiated shall be subject to Austrian law.
+																			As agreed, all necessary costs incurred due to previous mediation,
+																			particularly for legal advisors consulted, may be claimed in litigation or
+																			arbitration as ‘pre-trial costs’.
+																		</li>
+																	</ol>
+																</li>
+															</ol>
+							</section>
+							<section class="legal-section" id="terms-supplement">
+								<h2>Supplement</h2>
+								<h2>To the general terms &amp; conditions for the sale and the delivery of organisational
+																and programming services and permissions to use copyrighted software products</h2>
 
-					<div class="row-layout row-center">
-						<div class="col-70">
-							<h2>For the sale and the delivery of organisational and programming services and permissions
-								to use copyrighted software products</h2>
+															<ol class="legal-list">
+																<li>
+																	<h3>Data protection and confidentiality</h3>
+																	<ol class="legal-list">
+																		<li>The responsible person, processors and their employees shall keep personal
+																			data from data processing, with which they were entrusted or to which they
+																			gained access only due to their professional work, confidential,
+																			notwithstanding other statutory non-disclosure obligations, insofar as there
+																			is no other legally admissible reason for transmission of the personal data,
+																			which was entrusted or became accessible (data secrecy). Employees are to be
+																			instructed about this and about possible consequences in case of violation.
+																		</li>
+																	</ol>
+																</li>
+																<li>
+																	<h3>Miscellaneous</h3>
+																	<ol class="legal-list">
+																		<li>The place of jurisdiction shall be explicitly agreed upon again in a
+																			contractual agreement with the client.
+																		</li>
+																	</ol>
+																</li>
+															</ol>
+							</section>
+							<section class="legal-section" id="terms-cookies">
+								<h2>Cookie Policy</h2>
+								<h2>The capchaos.com cookie policy</h2>
 
-							<ol class="legal-list">
-								<li>
-									<h3>Scope of contract and validity</h3>
-									<ol class="legal-list">
-										<li>All orders and agreements shall only be legally binding insofar as these are
-											signed in writing with the legally binding signature of the company of the
-											Contractor and shall only obligate to the extent stated in the acceptance of
-											order. Purchase conditions of the Client shall herewith be excluded for the
-											respective legal transaction and the entire business relationship. All
-											offers are generally non-binding.
-										</li>
-									</ol>
-								</li>
-								<li>
-									<h3>Scope and assessment</h3>
-									<ol class="legal-list">
-										<li>The subject matter of an order may be:
-											<ul>
-												<li>Preparing organisational concepts</li>
-												<li>Global and detail analyses</li>
-												<li>Compiling individual programmes</li>
-												<li>Delivering library (standard-) programmes</li>
-												<li>Purchasing usage rights of software products</li>
-												<li>Purchasing permissions to use copyrighted products</li>
-												<li>Assisting in start-up (restructuring support)</li>
-												<li>Telephone consultations</li>
-												<li>Programme maintenance</li>
-												<li>Compiling programme media</li>
-												<li>Miscellaneous services</li>
-											</ul>
-										</li>
-										<li>Individual organizational concepts and programmes shall be created depending
-											on the nature and volume of binding information, documents and resources
-											provided in full by the Client. These shall include sufficient practical
-											test data and test facilities provided by the Client in due time, during
-											normal working hours and at their own expense. Should the system be provided
-											by the Client for the test work in regular operation, it shall be incumbent
-											upon the Client to secure the regular data.
-										</li>
-										<li>The development of individual programmes shall be based on the written
-											performance description chargeably created by the Contractor by means of the
-											documents and information provided to them and/or that the Client provides.
-											The Client shall review this performance description in terms of accuracy
-											and completeness and mark it with a sign of acceptance. Subsequent change
-											requests may lead to separate schedule and price agreements.
-										</li>
-										<li>The Client shall accept the respective programme package of individually
-											developed software and/or programme adaptations four weeks after delivery at
-											the latest. The Client shall verify acceptance on record. (Checks for
-											accuracy and completeness by means of the performance description accepted
-											by the Contractor using the test data mentioned in Clause 2.2.). Should the
-											Client let the four-week period pass without acceptation, the delivered
-											software shall be considered as accepted on the end date of the stipulated
-											period. In any case, the software shall be considered as accepted should it
-											be used in real operation by the Client.
-											Any defects, that is to say deviations from the performance description
-											agreed upon in writing, shall be reported to the Contractor in written form
-											and with sufficient documentation by the Client; the Contractor shall make
-											efforts to quickly rectify the defects. Should substantial defects, which
-											are reported in writing, occur, i.e. real operation cannot be started or
-											continued, new acceptance shall be necessary after rectification of defects.
-											The Client shall not be entitled to refuse acceptance of software due to
-											unsubstantial defects.
-										</li>
-										<li>When ordering library (standard) programmes, the Client shall confirm
-											knowledge of the scope of services of the ordered programmes upon ordering.
-										</li>
-										<li>Should it become obvious during the course of work that fulfilment of the
-											order, according to the performance description, is actually or legally
-											impossible, the Contractor shall immediately notify the Client thereof.
-											Should the Client not adapt the performance description accordingly and/or
-											not create conditions that make possible fulfilment, the Contractor may
-											refuse fulfilment. Should the inability of fulfilment be caused by default
-											of the Client or by a retrospective change of the performance description by
-											the Client, the Contractor shall be entitled to withdraw from the contract.
-											The Client shall reimburse the Contractor any costs and expenses incurred
-											for the work of the Contractor so far as well as for possible disassembly
-											costs.
-										</li>
-										<li>Delivery of programme media, documentation and performance descriptions
-											shall take place at the cost and risk of the Client. Further training and
-											explanations requested by the Client shall be invoiced separately.
-											Insurances shall only be obtained at the request of the Client.
-										</li>
-										<li>We expressly indicate that a barrier-free design, as defined by the Federal
-											Law on Equality of Persons with Disabilities (Federal Disability
-											Discrimination Act — BGStG) is not included in the quote, unless this was
-											separately/individually requested by the Client. Should a barrier-free
-											design not have been agreed upon, it shall be incumbent upon the Client to
-											check the admissibility of the service with regard to the Federal Disability
-											Discrimination Act. Moreover, the Client shall check the content they
-											provide in regard to legal admissibility, particularly in terms of
-											competition, brand, administrative law and copyright. The Contractor shall
-											not be liable to the Client in cases of minor negligence or after fulfilling
-											a possible duty to warn for the legal admissibility of content provided by
-											the Client.
-										</li>
-									</ol>
-								</li>
-								<li>
-									<h3>Prices, taxes and fees</h3>
-									<ol class="legal-list">
-										<li>All prices shall be calculated in Euros without VAT. These shall only apply
-											for the respective current order. All prices mentioned are quoted from place
-											of business of the Contractor. Expenses for programme media (e.g. CDs,
-											magnetic tape, hard disks, floppy disks, streamer tapes, magnetic tape
-											cassettes, etc.) as well as documents and possible contract fees shall be
-											invoiced separately.
-										</li>
-										<li>For library (standard) programmes, the list prices valid on the day of
-											delivery shall apply. For all other services (organisational consultation,
-											programming, initial training, adjustment support, telephone consultation,
-											etc.), the work shall be invoiced according to the rates effective on the
-											day of performance. Deviations to the time required as provided by
-											contractual pricing, which is not attributable to the Contractor, shall be
-											invoiced according to actual time required.
-										</li>
-										<li>Costs for travel expenses, daily and accommodation allowances shall be
-											separately invoiced to the Client at the respectively valid rates. Travel
-											time shall be considered working hours.
-										</li>
-									</ol>
-								</li>
-								<li>
-									<h3>Delivery date</h3>
-									<ol class="legal-list">
-										<li>The Contractor shall strive to meet the agreed deadlines of fulfilment
-											(completion) as closely as possible.
-										</li>
-										<li>It shall only be possible to meet the intended deadlines of fulfilment
-											provided the Client provides the Contractor with all necessary and complete
-											work and files by the stated deadlines, particularly, the accepted
-											performance description as stipulated in Clause 2.3., and provided the
-											Client meets their obligation of cooperation to the necessary extent.
-											The Contractor shall not be liable for delivery delays or cost increases
-											caused by incorrect, incomplete or retrospectively changed statements or
-											information and/or documents provided that lead to arrears of the
-											Contractor. The Client shall bear any additional costs incurring therefrom.
-										</li>
-										<li>The Contractor shall be entitled to make partial deliveries and/or partial
-											invoices for orders consisting of several units and/or programmes.
-										</li>
-									</ol>
-								</li>
-								<li>
-									<h3>Payment</h3>
-									<ol class="legal-list">
-										<li>The invoices issued by the Contractor incl. VAT shall be paid within 14 days
-											of receipt of the invoice without deductions and free of charges. In case of
-											partial invoices, the payment conditions agreed upon for the entire order
-											shall apply by analogy.
-										</li>
-										<li>The Contractor shall be entitled to issue an invoice upon delivery of each
-											individual unit or service for orders consisting of several units (e.g.
-											programmes and/or training, implementation in steps).
-										</li>
-										<li>Compliance with payment deadlines agreed upon shall form a crucial condition
-											for the performance of deliveries and/or contractual fulfilment by the
-											Contractor. Non-compliance with the agreed payments shall entitle the
-											Contractor to stop ongoing work and to withdraw from the contract. The
-											Client shall bear all expenses related to this as well as loss of profit of
-											the Contractor.
-											In case of payment arrears, the standard base interest rate shall be
-											charged. Should two instalments (in case of partial payments) not be paid,
-											the Contractor shall be entitled to have immediate maturity come into effect
-											and to render any notes payable due for payment.
-										</li>
-										<li>The Client shall not be entitled to withhold payments due to incomplete
-											overall deliveries, warranty or guarantee claims or defects.
-										</li>
-									</ol>
-								</li>
-								<li>
-									<h3>Copyright and usage</h3>
-									<ol class="legal-list">
-										<li>After payment of the remuneration agreed, the Contractor shall grant the
-											Client a non-exclusive, non-transferrable, non-sub-licensable and indefinite
-											right to use the software for the hardware specified in the contract to the
-											extent of the purchased licenses, for the simultaneous usage thereof at
-											several work places and the right to use all work results based on the
-											contract of the Contractor for in-house use. The Contractor shall retain all
-											other rights.
-											Involvement of the Client in the creation of software shall not entitle them
-											to acquire any rights beyond use of the product as set forth in the
-											Contract. Each infringement of the copyright of the Contractor shall result
-											in claims for damages, in which case full amends are to be made.
-										</li>
-										<li>The Client shall be permitted to make copies for archiving and data security
-											purposes subject to the condition that the software contains no express ban
-											of the licensor or a third party, and that all copyright and ownership
-											notices shall be transferred to the copies without alteration.
-										</li>
-										<li>Should the disclosure of the interfaces be necessary to produce the
-											interoperability of the software covered by this Contract, the Client shall
-											separately request this from the Contractor for a fee. Should the Contractor
-											not meet this request and decompilation take place according to the Austrian
-											Federal Law on Copyright, the results shall only be used to establish
-											interoperability. Malpractice shall lead to damages.
-										</li>
-										<li>Should the Contractor provide the Client with software, whose licensee is a
-											third party (e.g. standard software by Microsoft), the right of usage shall
-											be provided by the license conditions of the licensee (manufacturer).
-										</li>
-									</ol>
-								</li>
-								<li>
-									<h3>Right of withdrawal</h3>
-									<ol class="legal-list">
-										<li>The Client shall be entitled to withdraw from a respective order by letter
-											sent by registered post, should the agreed delivery deadline not be met due
-											to the sole fault or illegal actions of the Contractor provided that the
-											agreed service is not performed to a considerable extent within an adequate
-											grace period and the Client is not at fault.
-										</li>
-										<li>Force majeure, work conflicts, natural disasters and transport bans, as well
-											as other circumstances outside of the influence of the Contractor, shall
-											release the Contractor from their obligation to delivery and/or shall allow
-											them to determine a new delivery deadline.
-										</li>
-										<li>It shall only be possible for the Client to cancel an order with written
-											consent of the Contractor. Should the Contractor agree to cancelation of an
-											order, they shall be entitled to charge a cancellation fee to the amount of
-											30% of the overall project order value not yet invoiced in addition to the
-											services already rendered and costs incurred.
-										</li>
-									</ol>
-								</li>
-								<li>
-									<h3>Guarantee, maintenance, changes</h3>
-									<ol class="legal-list">
-										<li>The Contractor shall guarantee that the software fulfils the functions
-											according to the respective documentation insofar as the software is used on
-											the operating system stipulated in the contract.
-											<ol class="legal-list">
-												<li>Prerequisites for error correction shall be that:
-													<ul>
-														<li>The Client sufficiently describes the error in an error
-															message and that this is definable for the Contractor
-														</li>
-														<li>The Client provides the Contractor with all documents
-															necessary for the correction of the error
-														</li>
-														<li>The Client or an affiliated third party has not interfered
-															with the software
-														</li>
-														<li>The software is used according to the designated conditions
-															of use as stipulated in the documentation
-														</li>
-													</ul>
-												</li>
-												<li>With regard to guarantee, rectification shall, in any case, prevail
-													over price reduction or redhibitory action. Should a notice of
-													defects be justified, the deficiencies shall be rectified within an
-													adequate period, in which the Client shall enable the Contractor for
-													all measures necessary for examination and rectification. Section
-													924 of the Austrian Civil Code ‘Assumption of Deficiency’ shall be
-													excluded.
-												</li>
-												<li>The Contractor shall, free of charge, implement corrections and
-													additions, which become necessary due to organisational and
-													technical defects of the programme, until transferral of the agreed
-													services, insofar as these are attributable to the Contractor.
-												</li>
-											</ol>
-										</li>
-										<li>The Client shall bear the costs for assistance, incorrect diagnosis,
-											correction of errors and emergency maintenance attributable to the Client as
-											well as other corrections, changes and additions. This shall also apply to
-											rectification of deficiencies, should the Client or a third party make
-											programme changes, additions and other interferences.
-										</li>
-										<li>Furthermore, the Contractor shall not be liable for errors, disruptions or
-											damage caused by improper use, changes in components of the operating
-											system, interfaces or parameters, the use of inadequate organisational means
-											or data storage media (as far as these are required), abnormal operating
-											conditions (particularly deviations of installation and storage conditions)
-											or transport damage.
-										</li>
-										<li>The Client shall lose any guarantee from the Contractor for programmes that
-											are retrospectively changed by in-house software engineers or third parties.
-										</li>
-										<li>Insofar as changing or adding to existing programmes forms the subject
-											matter of an order, the guarantee shall apply to the change or addition. The
-											guarantee for the original programme shall not be renewed by this.
-										</li>
-										<li>Guarantee claims shall lapse after six (6) months from transferral.</li>
-									</ol>
-								</li>
-								<li>
-									<h3>Liability</h3>
-									<ol class="legal-list">
-										<li>The Contractor shall only be liable to the Client for damage the Contractor
-											verifiably causes in cases of gross negligence. This shall also apply
-											mutatis mutandis to damage caused by third parties brought in by the
-											Contractor. In case of bodily injuries caused by the Contractor, the
-											Contractor shall be liable without limitation.
-										</li>
-										<li>Liability for indirect damage, e.g. loss of profit, costs related to
-											interruptions, data losses or claims of third parties, shall be expressly
-											excluded.
-										</li>
-										<li>Claims for damages shall lapse according to legal provisions, however, at
-											the latest after one year starting from the knowledge of the damage and the
-											person responsible for this.
-										</li>
-										<li>Should the Contractor fulfil work with the assistance of a third party and
-											any guarantee and/or liability claims arise against this third party
-											therefrom, the Contractor shall cede those claims to the Client. In such
-											cases, the Client shall focus on this third party.
-										</li>
-										<li>Should data backup be expressly agreed upon as a service, liability for the
-											loss of data shall not be excluded, deviating from Clause 9.2, however,
-											restoration of the data shall be limited to a maximum of 10% of the total
-											order sum per case of damage, however, with an overall maximum of EUR 5,000.
-											Further claims for damages and guarantees of the Client than those
-											stipulated in this Contract shall be excluded, regardless of legal basis.
-										</li>
-										<li>The Contractors overall liability shall be limited to the amounts actually
-											paid by the Client to the Contractor.
-										</li>
-									</ol>
-								</li>
-								<li>
-									<h3>Loyalty</h3>
-									<ol class="legal-list">
-										<li>The contractual partners agree to mutual loyalty. Both shall refrain from
-											headhunting and employing, even via third parties, employees of the
-											respective other contractual partner, who work on the fulfilment of orders,
-											for the term of contract and twelve months after the contract terminates.
-											Any contractual partner infringing this clause shall be obligated to pay
-											lump-sum indemnification to the amount of one annual salary of the employee.
-										</li>
-									</ol>
-								</li>
-								<li>
-									<h3>Non-disclosure</h3>
-									<ol class="legal-list">
-										<li>The Contractor shall obligate their employees to fulfil the provisions
-											stipulated in Section 6 of the Austrian Data Protection Act.
-										</li>
-									</ol>
-								</li>
-								<li>
-									<h3>Miscellaneous</h3>
-									<ol class="legal-list">
-										<li>Should clauses of this Contract be or become invalid, this shall not affect
-											the validity of remaining subject matter of the Contract. The contractual
-											partners shall cooperate in order to find a regulation which comes as close
-											as possible to the intention of the invalid clauses.
-										</li>
-									</ol>
-								</li>
-								<li>
-									<h3>Final Provisions</h3>
-									<ol class="legal-list">
-										<li>Insofar as nothing else is agreed on, only the legal provisions regarding
-											business-to-business transactions according to Austrian law shall apply,
-											even if the order is implemented abroad. The local jurisdiction of the
-											objectively competent court for the place of business of the Contractor
-											shall be exclusively agreed upon for possible disputes. Pursuant to the
-											Austrian Consumer Protection Law (KSchG), the Terms and Conditions above
-											shall be valid insofar as the Austrian Consumer Protection Law provides no
-											differing obligatory provisions for selling to consumers.
-										</li>
-										<li>In the event that any disputes, which cannot be solved by mutual agreement,
-											arise from this Contract, the parties to the contract agree to engage a
-											listed mediator (Austrian Civil Rights Mediation Law (ZivMediatG)
-											specialized in business mediation from the list of the Austrian Ministry of
-											Justice in order to reconcile these out of court. Should no mutual agreement
-											regarding the selection of the business mediator or with regard to content
-											be possible, legal measures shall be initiated no sooner than one month
-											after the negotiations fail.
-										</li>
-										<li>In the event that mediation could not be held or was discontinued, any
-											litigation initiated shall be subject to Austrian law.
-											As agreed, all necessary costs incurred due to previous mediation,
-											particularly for legal advisors consulted, may be claimed in litigation or
-											arbitration as ‘pre-trial costs’.
-										</li>
-									</ol>
-								</li>
-							</ol>
+															<ol class="legal-list">
+																<li>
+																	<h3>What are cookies</h3>
+																	<ol class="legal-list">
+																		<li>Most websites use cookies, which are tiny files that are downloaded to your
+																			computer, to improve your experience. Preventing cookies from being stored
+																			may downgrade or ‘break’ certain elements of a sites functionality. For more
+																			general information on cookies see the Wikipedia article on HTTP Cookies.
+																		</li>
+																	</ol>
+																</li>
+																<li>
+																	<h3>How We Use Cookies</h3>
+																	<ol class="legal-list">
+																		<li>I don't! You are not being tracked or followed by this site at all!</li>
+																	</ol>
+																</li>
+															</ol>
+							</section>
+							<section class="legal-section" id="terms-privacy">
+								<h2>Privacy Policy</h2>
+								<h2>The personal user data this site collects</h2>
 
-							<h2 class="page-title section-title">Supplement</h2>
-							<h2>To the general terms &amp; conditions for the sale and the delivery of organisational
-								and programming services and permissions to use copyrighted software products</h2>
+															<ol class="legal-list">
+																<li>
+																	<h3>Owner and Data Controller</h3>
+																	<ol class="legal-list">
+																		<li>The websites address of this site is <a href="#home">capchaos.com</a>. You
+																			can reach me via the <a href="#contact">contact page</a> of this website.
+																		</li>
+																	</ol>
+																</li>
+																<li>
+																	<h3>Types of Data collected</h3>
+																	<ol class="legal-list">
+																		<li>I don't collect personal data on this website!</li>
+																	</ol>
+																</li>
+															</ol>
+							</section>
+						</div>
 
-							<ol class="legal-list">
-								<li>
-									<h3>Data protection and confidentiality</h3>
-									<ol class="legal-list">
-										<li>The responsible person, processors and their employees shall keep personal
-											data from data processing, with which they were entrusted or to which they
-											gained access only due to their professional work, confidential,
-											notwithstanding other statutory non-disclosure obligations, insofar as there
-											is no other legally admissible reason for transmission of the personal data,
-											which was entrusted or became accessible (data secrecy). Employees are to be
-											instructed about this and about possible consequences in case of violation.
-										</li>
-									</ol>
-								</li>
-								<li>
-									<h3>Miscellaneous</h3>
-									<ol class="legal-list">
-										<li>The place of jurisdiction shall be explicitly agreed upon again in a
-											contractual agreement with the client.
-										</li>
-									</ol>
-								</li>
-							</ol>
-
-							<h2 class="page-title section-title">Cookie Policy</h2>
-							<h2>The capchaos.com cookie policy</h2>
-
-							<ol class="legal-list">
-								<li>
-									<h3>What are cookies</h3>
-									<ol class="legal-list">
-										<li>Most websites use cookies, which are tiny files that are downloaded to your
-											computer, to improve your experience. Preventing cookies from being stored
-											may downgrade or ‘break’ certain elements of a sites functionality. For more
-											general information on cookies see the Wikipedia article on HTTP Cookies.
-										</li>
-									</ol>
-								</li>
-								<li>
-									<h3>How We Use Cookies</h3>
-									<ol class="legal-list">
-										<li>I don't! You are not being tracked or followed by this site at all!</li>
-									</ol>
-								</li>
-							</ol>
-
-							<h2 class="page-title section-title">Privacy Policy</h2>
-							<h2>The personal user data this site collects</h2>
-
-							<ol class="legal-list">
-								<li>
-									<h3>Owner and Data Controller</h3>
-									<ol class="legal-list">
-										<li>The websites address of this site is <a href="#home">capchaos.com</a>. You
-											can reach me via the <a href="#contact">contact page</a> of this website.
-										</li>
-									</ol>
-								</li>
-								<li>
-									<h3>Types of Data collected</h3>
-									<ol class="legal-list">
-										<li>I don't collect personal data on this website!</li>
-									</ol>
-								</li>
-							</ol>
+						<div class="toc-wrap">
+							<nav class="toc" aria-label="On this page">
+								<p class="toc-heading">On this page</p>
+								<ol>
+									<li><a href="#terms-gtc" data-toc-link>General Terms &amp; Conditions</a></li>
+									<li><a href="#terms-supplement" data-toc-link>Supplement</a></li>
+									<li><a href="#terms-cookies" data-toc-link>Cookie Policy</a></li>
+									<li><a href="#terms-privacy" data-toc-link>Privacy Policy</a></li>
+								</ol>
+							</nav>
 						</div>
 					</div>
+				</section>
 
-				</div>
 			</article>
 
-		</main>
+</main>
 
-		<!-- ============================================================
-		     Footer
-		     ============================================================ -->
-		<footer class="footer">
-			<div class="footer-col">
+<!-- ====================================================================
+     Footer
+     ==================================================================== -->
+<footer class="site-footer">
+	<div class="container">
+		<div class="footer-grid">
+			<div>
 				<a class="footer-brand" href="#home">CapChaos</a>
-				<p class="center-text">© 2023 CapChaos e.U.</p>
+				<p>Software development &amp; tactical management service, bridging strategic planning and day-to-day execution.</p>
+				<a class="footer-social" href="https://www.linkedin.com/in/franzgerhart/" target="_blank" rel="noopener noreferrer">
+					<span class="linkedin-icon" aria-hidden="true"></span> LinkedIn
+				</a>
 			</div>
-			<div class="footer-col">
+			<div>
+				<p class="footer-heading">Services</p>
 				<ul class="footer-list">
 					<li><a href="#business-intelligence">Business Intelligence</a></li>
 					<li><a href="#software-strategy">Software Strategy</a></li>
 					<li><a href="#tactical-management">Tactical Management</a></li>
 				</ul>
 			</div>
-			<div class="footer-col">
+			<div>
+				<p class="footer-heading">Legal</p>
 				<ul class="footer-list">
 					<li><a href="#contact">Contact</a></li>
 					<li><a href="#notice">Legal Notice</a></li>
 					<li><a href="#terms">Terms</a></li>
 				</ul>
 			</div>
-		</footer>
-
+			<div class="footer-contact">
+				<p class="footer-heading">CapChaos e.U.</p>
+				<address>
+					Hauptstraße 40, Top 2<br>
+					2504 Sooß<br>
+					Austria
+				</address>
+				<a href="mailto:franz.gerhart@capchaos.com">franz.gerhart@capchaos.com</a>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<span>© 2026 CapChaos e.U.</span>
+			<span>FN556832X · ATU76821637</span>
+		</div>
 	</div>
-</div>
-
-<noscript>
-	<p class="center-text" style="padding:16px">This site uses JavaScript to switch between articles. All content is
-		contained within this single page.</p>
-</noscript>
+</footer>
 
 <script src="app.js"></script>
 </body>

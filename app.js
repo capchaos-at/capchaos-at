@@ -1,6 +1,6 @@
 /* ==========================================================================
    CapChaos — static site behaviour
-   Hash-based article navigation, off-canvas sidebar, steppers.
+   Hash-based article navigation, mobile menu, in-page scrolling, legal TOC.
    ========================================================================== */
 
 (function () {
@@ -58,27 +58,46 @@
 	};
 
 	var body = document.body;
+	var header = document.getElementById('site-header');
 	var navToggle = document.getElementById('nav-toggle');
 	var navToggleIcon = navToggle ? navToggle.querySelector('.material-icons') : null;
-	var backdrop = document.getElementById('backdrop');
-	var mobileQuery = window.matchMedia('(max-width: 1023px)');
+	var navBackdrop = document.getElementById('nav-backdrop');
+	var compactNav = window.matchMedia('(max-width: 1080px)');
+	var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+	function $$(selector, root) {
+		return Array.prototype.slice.call((root || document).querySelectorAll(selector));
+	}
 
 	/* ----------------------------------------------------------------------
-	   Sidebar
+	   Header elevation on scroll
+	   ---------------------------------------------------------------------- */
+
+	if (header) {
+		var updateHeader = function () {
+			header.classList.toggle('is-stuck', window.scrollY > 8);
+		};
+		window.addEventListener('scroll', updateHeader, {passive: true});
+		updateHeader();
+	}
+
+	/* ----------------------------------------------------------------------
+	   Mobile menu
 	   ---------------------------------------------------------------------- */
 
 	function setNav(open) {
 		body.classList.toggle('nav-open', open);
 		if (navToggle) {
 			navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+			navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
 		}
 		if (navToggleIcon) {
 			navToggleIcon.textContent = open ? 'close' : 'menu';
 		}
 	}
 
-	function closeNavOnMobile() {
-		if (mobileQuery.matches) {
+	function closeNav() {
+		if (body.classList.contains('nav-open')) {
 			setNav(false);
 		}
 	}
@@ -89,29 +108,27 @@
 		});
 	}
 
-	if (backdrop) {
-		backdrop.addEventListener('click', function () {
-			setNav(false);
-		});
+	if (navBackdrop) {
+		navBackdrop.addEventListener('click', closeNav);
 	}
 
 	document.addEventListener('keydown', function (event) {
-		if (event.key === 'Escape' && body.classList.contains('nav-open')) {
-			closeNavOnMobile();
+		if (event.key === 'Escape') {
+			closeNav();
 		}
 	});
 
-	/* The drawer is permanent from 1024px up, so drop the "open" state when crossing over. */
-	function syncNavToViewport() {
-		if (!mobileQuery.matches) {
-			setNav(false);
+	/* The menu only exists below the nav breakpoint; drop its state on the way up. */
+	function onBreakpointChange() {
+		if (!compactNav.matches) {
+			closeNav();
 		}
 	}
 
-	if (mobileQuery.addEventListener) {
-		mobileQuery.addEventListener('change', syncNavToViewport);
-	} else if (mobileQuery.addListener) {
-		mobileQuery.addListener(syncNavToViewport);
+	if (compactNav.addEventListener) {
+		compactNav.addEventListener('change', onBreakpointChange);
+	} else if (compactNav.addListener) {
+		compactNav.addListener(onBreakpointChange);
 	}
 
 	/* ----------------------------------------------------------------------
@@ -146,23 +163,22 @@
 	}
 
 	function showArticle(id, scrollToTop) {
-		var articles = document.querySelectorAll('.article');
-		for (var i = 0; i < articles.length; i++) {
-			articles[i].classList.toggle('is-active', articles[i].id === id);
-		}
+		$$('.article').forEach(function (article) {
+			article.classList.toggle('is-active', article.id === id);
+		});
 
-		var links = document.querySelectorAll('[data-nav-link]');
-		for (var j = 0; j < links.length; j++) {
-			var isActive = links[j].getAttribute('href') === '#' + id;
-			links[j].classList.toggle('active-link', isActive);
+		$$('[data-nav-link]').forEach(function (link) {
+			var isActive = link.getAttribute('href') === '#' + id;
+			link.classList.toggle('active-link', isActive);
 			if (isActive) {
-				links[j].setAttribute('aria-current', 'page');
+				link.setAttribute('aria-current', 'page');
 			} else {
-				links[j].removeAttribute('aria-current');
+				link.removeAttribute('aria-current');
 			}
-		}
+		});
 
 		applyMeta(id);
+		syncToc();
 
 		if (scrollToTop) {
 			/* Jump, don't glide — the CSS smooth-scroll is meant for in-page anchors. */
@@ -174,88 +190,81 @@
 		}
 	}
 
-	function onHashChange() {
+	window.addEventListener('hashchange', function () {
 		showArticle(currentArticleId(), true);
-		closeNavOnMobile();
-	}
-
-	window.addEventListener('hashchange', onHashChange);
+		closeNav();
+	});
 
 	/* Re-tapping the link of the article you are already on fires no hashchange. */
-	document.querySelectorAll('[data-nav-link]').forEach(function (link) {
-		link.addEventListener('click', closeNavOnMobile);
+	$$('[data-nav-link]').forEach(function (link) {
+		link.addEventListener('click', closeNav);
 	});
 
 	/* ----------------------------------------------------------------------
-	   Accordion "Explore" shortcut
+	   In-page scrolling
+	   Kept off the URL so the hash stays reserved for the router.
 	   ---------------------------------------------------------------------- */
 
-	var exploreBtn = document.getElementById('explore-button');
-	if (exploreBtn) {
-		exploreBtn.addEventListener('click', function () {
-			var panel = document.getElementById('panel-what');
-			var accordion = document.getElementById('home-accordion');
-			if (panel) {
-				panel.open = true;
-			}
-			if (accordion) {
-				accordion.scrollIntoView({behavior: 'smooth', block: 'start'});
-			}
-		});
-	}
-
-	/* ----------------------------------------------------------------------
-	   Steppers
-	   ---------------------------------------------------------------------- */
-
-	function initStepper(stepper) {
-		var steps = Array.prototype.slice.call(stepper.querySelectorAll('.step'));
-		if (!steps.length) {
+	function scrollToTarget(selector) {
+		var target = document.querySelector(selector);
+		if (!target) {
 			return;
 		}
-
-		function select(index) {
-			steps.forEach(function (step, i) {
-				step.classList.toggle('is-active', i === index);
-				step.classList.toggle('is-done', i < index);
-				var header = step.querySelector('.step-header');
-				var panel = step.querySelector('.step-body');
-				if (header) {
-					header.setAttribute('aria-expanded', i === index ? 'true' : 'false');
-				}
-				if (panel) {
-					panel.hidden = i !== index;
-				}
-			});
-		}
-
-		steps.forEach(function (step, index) {
-			var header = step.querySelector('.step-header');
-			if (header) {
-				header.addEventListener('click', function () {
-					select(index);
-				});
-			}
-
-			step.querySelectorAll('[data-step-next]').forEach(function (btn) {
-				btn.addEventListener('click', function () {
-					select(Math.min(index + 1, steps.length - 1));
-					step.scrollIntoView({behavior: 'smooth', block: 'nearest'});
-				});
-			});
-
-			step.querySelectorAll('[data-step-prev]').forEach(function (btn) {
-				btn.addEventListener('click', function () {
-					select(Math.max(index - 1, 0));
-					step.scrollIntoView({behavior: 'smooth', block: 'nearest'});
-				});
-			});
+		target.scrollIntoView({
+			behavior: reduceMotion.matches ? 'auto' : 'smooth',
+			block: 'start'
 		});
-
-		select(0);
 	}
 
-	document.querySelectorAll('.stepper').forEach(initStepper);
+	$$('[data-scroll-to]').forEach(function (trigger) {
+		trigger.addEventListener('click', function (event) {
+			event.preventDefault();
+			scrollToTarget(trigger.getAttribute('data-scroll-to'));
+		});
+	});
+
+	/* ----------------------------------------------------------------------
+	   Table of contents for the terms article
+	   ---------------------------------------------------------------------- */
+
+	var tocLinks = $$('[data-toc-link]');
+	var tocSections = tocLinks
+		.map(function (link) { return document.querySelector(link.getAttribute('href')); })
+		.filter(Boolean);
+
+	function markToc(id) {
+		tocLinks.forEach(function (link) {
+			link.classList.toggle('is-current', link.getAttribute('href') === '#' + id);
+		});
+	}
+
+	tocLinks.forEach(function (link) {
+		link.addEventListener('click', function (event) {
+			event.preventDefault();
+			var id = link.getAttribute('href').slice(1);
+			scrollToTarget('#' + id);
+			markToc(id);
+		});
+	});
+
+	/* Highlight whichever legal section is currently nearest the top. */
+	function syncToc() {
+		if (!tocSections.length) {
+			return;
+		}
+		var offset = (header ? header.offsetHeight : 0) + 32;
+		var current = tocSections[0];
+		tocSections.forEach(function (section) {
+			if (section.getBoundingClientRect().top <= offset) {
+				current = section;
+			}
+		});
+		markToc(current.id);
+	}
+
+	if (tocSections.length) {
+		window.addEventListener('scroll', syncToc, {passive: true});
+	}
 
 	/* ----------------------------------------------------------------------
 	   Boot
@@ -263,9 +272,7 @@
 
 	/* Rewrite an old router URL into its hash equivalent before the first render.
 	   Only over http(s) — replaceState on a file:// path throws. */
-	var isHttp = /^https?:$/.test(window.location.protocol);
-
-	if (isHttp && !window.location.hash) {
+	if (/^https?:$/.test(window.location.protocol) && !window.location.hash) {
 		var legacy = LEGACY_PATHS[window.location.pathname.replace(/\/$/, '')];
 		window.history.replaceState(null, '', '/#' + (legacy || DEFAULT_ARTICLE));
 	}
