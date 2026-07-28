@@ -22,7 +22,7 @@
 		},
 		'software-strategy': {
 			title: 'Software Strategy Service - CapChaos',
-			description: 'Choosing the right tech-stack is paramount to success in scaling your venture. Conversely, picking the wrong components will become dreadful during growth. CapChaos has the knowledge and network to get your organization on the right track.',
+			description: 'Choosing the right tech-stack is paramount to success in scaling your venture. Conversely, picking the wrong components will become dreadful during growth. CapChaos has the knowledge and network to get your organisation on the right track.',
 			image: 'assets/images/software-strategy-main.webp'
 		},
 		'tactical-management': {
@@ -32,7 +32,7 @@
 		},
 		'contact': {
 			title: 'Contact - CapChaos',
-			description: 'Get in touch with me via e-mail or LinkedIn. Am looking forward to exploring the opportunity in working for your organization.',
+			description: 'Get in touch with me via e-mail or LinkedIn. I am looking forward to exploring the opportunity in working for your organisation.',
 			image: 'assets/images/contact.webp'
 		},
 		'notice': {
