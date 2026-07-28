@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="IBM_Plex_Sans">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/assets/fonts/IBM_Plex_Sans.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
